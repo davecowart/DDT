@@ -109,6 +109,7 @@
     <Content Include="Content\blueprint\_examples\valid.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Views\Character\Create.aspx" />
     <Content Include="Views\Character\Details.aspx" />
     <Content Include="Views\Character\Index.aspx" />
     <Content Include="Web.config">
@@ -141,7 +142,6 @@
       <LastGenOutput>DDT.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Shared\Site.Master" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\Blueprint.Master" />
     <None Include="Views\Shared\_Blueprint.cshtml" />

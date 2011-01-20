@@ -16,6 +16,17 @@ namespace DDT.Controllers {
 			return View(characters);
 		}
 
+		public ActionResult Create() {
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Create(Character character) {
+			_db.Characters.InsertOnSubmit(character);
+			_db.SubmitChanges();
+			return RedirectToAction("Details", new { id = character.Id });
+		}
+
 		public ActionResult Details(int id) {
 			var character = _db.Characters.SingleOrDefault(c => c.Id == id);
 			if (character == null)

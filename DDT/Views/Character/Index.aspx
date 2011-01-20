@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DDT.Models.Character>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Blueprint.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DDT.Models.Character>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Characters
@@ -26,5 +26,7 @@
 		<% } %>
 
 		</table>
+
+		<p><%: Html.ActionLink("Create New Character", "Create") %></p>
 </asp:Content>
 
