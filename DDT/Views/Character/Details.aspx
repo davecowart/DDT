@@ -10,13 +10,13 @@
 		<h2><%: Model.Character.Name %></h2>
 
 		<div>
-			<div id="abilities" class="span-12">
+			<div id="abilities" class="span-8">
 				<table>
 					<thead>
 						<tr>
-							<th>ABILITY</th>
-							<th>MOD</th>
-							<th>MOD+</th>
+							<th>Ability</th>
+							<th>Mod</th>
+							<th>Mod+</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,26 +41,26 @@
 					</tbody>
 				</table>
 			</div>
-			<div id="defenses" class="span-12 last">
-				<div class="span-3">
+			<div id="defenses" class="span-16 last">
+				<div class="span-4">
 					<h3>AC</h3>
                     <p><strong><%: Model.Character.AC + Model.ACBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.AC %></p>
                     <% Html.RenderPartial("ACBonusList", Model.ACBonuses); %>
 				</div>
-				<div class="span-3">
+				<div class="span-4">
 					<h3>FORT</h3>
                     <p><strong><%: Model.Character.Fortitude + Model.FortBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.Fortitude %></p>
                     <% Html.RenderPartial("FortBonusList", Model.FortBonuses); %>
 				</div>
-				<div class="span-3">
+				<div class="span-4">
 					<h3>REF</h3>
                     <p><strong><%: Model.Character.Reflex + Model.ReflexBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.Reflex %></p>
                     <% Html.RenderPartial("RefBonusList", Model.ReflexBonuses); %>
 				</div>
-				<div class="span-3 last">
+				<div class="span-4 last">
 					<h3>WILL</h3>
                     <p><strong><%: Model.Character.Will + Model.WillBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.Will %></p>
