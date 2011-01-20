@@ -36,9 +36,6 @@ namespace DDT.Models
     partial void InsertACBonuse(ACBonuse instance);
     partial void UpdateACBonuse(ACBonuse instance);
     partial void DeleteACBonuse(ACBonuse instance);
-    partial void InsertFortBonuse(FortBonuse instance);
-    partial void UpdateFortBonuse(FortBonuse instance);
-    partial void DeleteFortBonuse(FortBonuse instance);
     partial void InsertReflexBonuse(ReflexBonuse instance);
     partial void UpdateReflexBonuse(ReflexBonuse instance);
     partial void DeleteReflexBonuse(ReflexBonuse instance);
@@ -51,6 +48,9 @@ namespace DDT.Models
     partial void InsertEffect(Effect instance);
     partial void UpdateEffect(Effect instance);
     partial void DeleteEffect(Effect instance);
+    partial void InsertFortBonuse(FortBonuse instance);
+    partial void UpdateFortBonuse(FortBonuse instance);
+    partial void DeleteFortBonuse(FortBonuse instance);
     #endregion
 		
 		public DDTDataContext() : 
@@ -99,14 +99,6 @@ namespace DDT.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<FortBonuse> FortBonuses
-		{
-			get
-			{
-				return this.GetTable<FortBonuse>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ReflexBonuse> ReflexBonuses
 		{
 			get
@@ -136,6 +128,14 @@ namespace DDT.Models
 			get
 			{
 				return this.GetTable<Effect>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FortBonuse> FortBonuses
+		{
+			get
+			{
+				return this.GetTable<FortBonuse>();
 			}
 		}
 	}
@@ -554,181 +554,6 @@ namespace DDT.Models
 					if ((value != null))
 					{
 						value.ACBonuses.Add(this);
-						this._CharacterId = value.Id;
-					}
-					else
-					{
-						this._CharacterId = default(int);
-					}
-					this.SendPropertyChanged("Character");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FortBonuses")]
-	public partial class FortBonuse : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CharacterId;
-		
-		private int _BonusAmount;
-		
-		private int _ExpirationKey;
-		
-		private EntityRef<Character> _Character;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCharacterIdChanging(int value);
-    partial void OnCharacterIdChanged();
-    partial void OnBonusAmountChanging(int value);
-    partial void OnBonusAmountChanged();
-    partial void OnExpirationKeyChanging(int value);
-    partial void OnExpirationKeyChanged();
-    #endregion
-		
-		public FortBonuse()
-		{
-			this._Character = default(EntityRef<Character>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
-		public int CharacterId
-		{
-			get
-			{
-				return this._CharacterId;
-			}
-			set
-			{
-				if ((this._CharacterId != value))
-				{
-					if (this._Character.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCharacterIdChanging(value);
-					this.SendPropertyChanging();
-					this._CharacterId = value;
-					this.SendPropertyChanged("CharacterId");
-					this.OnCharacterIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BonusAmount", DbType="Int NOT NULL")]
-		public int BonusAmount
-		{
-			get
-			{
-				return this._BonusAmount;
-			}
-			set
-			{
-				if ((this._BonusAmount != value))
-				{
-					this.OnBonusAmountChanging(value);
-					this.SendPropertyChanging();
-					this._BonusAmount = value;
-					this.SendPropertyChanged("BonusAmount");
-					this.OnBonusAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpirationKey", DbType="Int NOT NULL")]
-		public int ExpirationKey
-		{
-			get
-			{
-				return this._ExpirationKey;
-			}
-			set
-			{
-				if ((this._ExpirationKey != value))
-				{
-					this.OnExpirationKeyChanging(value);
-					this.SendPropertyChanging();
-					this._ExpirationKey = value;
-					this.SendPropertyChanged("ExpirationKey");
-					this.OnExpirationKeyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
-		public Character Character
-		{
-			get
-			{
-				return this._Character.Entity;
-			}
-			set
-			{
-				Character previousValue = this._Character.Entity;
-				if (((previousValue != value) 
-							|| (this._Character.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Character.Entity = null;
-						previousValue.FortBonuses.Remove(this);
-					}
-					this._Character.Entity = value;
-					if ((value != null))
-					{
-						value.FortBonuses.Add(this);
 						this._CharacterId = value.Id;
 					}
 					else
@@ -1213,13 +1038,13 @@ namespace DDT.Models
 		
 		private EntitySet<ACBonuse> _ACBonuses;
 		
-		private EntitySet<FortBonuse> _FortBonuses;
-		
 		private EntitySet<ReflexBonuse> _ReflexBonuses;
 		
 		private EntitySet<WillBonuse> _WillBonuses;
 		
 		private EntitySet<Effect> _Effects;
+		
+		private EntitySet<FortBonuse> _FortBonuses;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1323,10 +1148,10 @@ namespace DDT.Models
 		{
 			this._Powers = new EntitySet<Power>(new Action<Power>(this.attach_Powers), new Action<Power>(this.detach_Powers));
 			this._ACBonuses = new EntitySet<ACBonuse>(new Action<ACBonuse>(this.attach_ACBonuses), new Action<ACBonuse>(this.detach_ACBonuses));
-			this._FortBonuses = new EntitySet<FortBonuse>(new Action<FortBonuse>(this.attach_FortBonuses), new Action<FortBonuse>(this.detach_FortBonuses));
 			this._ReflexBonuses = new EntitySet<ReflexBonuse>(new Action<ReflexBonuse>(this.attach_ReflexBonuses), new Action<ReflexBonuse>(this.detach_ReflexBonuses));
 			this._WillBonuses = new EntitySet<WillBonuse>(new Action<WillBonuse>(this.attach_WillBonuses), new Action<WillBonuse>(this.detach_WillBonuses));
 			this._Effects = new EntitySet<Effect>(new Action<Effect>(this.attach_Effects), new Action<Effect>(this.detach_Effects));
+			this._FortBonuses = new EntitySet<FortBonuse>(new Action<FortBonuse>(this.attach_FortBonuses), new Action<FortBonuse>(this.detach_FortBonuses));
 			OnCreated();
 		}
 		
@@ -2276,19 +2101,6 @@ namespace DDT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_FortBonuses", ThisKey="Id", OtherKey="CharacterId")]
-		public EntitySet<FortBonuse> FortBonuses
-		{
-			get
-			{
-				return this._FortBonuses;
-			}
-			set
-			{
-				this._FortBonuses.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_ReflexBonuse", Storage="_ReflexBonuses", ThisKey="Id", OtherKey="CharacterId")]
 		public EntitySet<ReflexBonuse> ReflexBonuses
 		{
@@ -2325,6 +2137,19 @@ namespace DDT.Models
 			set
 			{
 				this._Effects.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_FortBonuses", ThisKey="Id", OtherKey="CharacterId")]
+		public EntitySet<FortBonuse> FortBonuses
+		{
+			get
+			{
+				return this._FortBonuses;
+			}
+			set
+			{
+				this._FortBonuses.Assign(value);
 			}
 		}
 		
@@ -2372,18 +2197,6 @@ namespace DDT.Models
 			entity.Character = null;
 		}
 		
-		private void attach_FortBonuses(FortBonuse entity)
-		{
-			this.SendPropertyChanging();
-			entity.Character = this;
-		}
-		
-		private void detach_FortBonuses(FortBonuse entity)
-		{
-			this.SendPropertyChanging();
-			entity.Character = null;
-		}
-		
 		private void attach_ReflexBonuses(ReflexBonuse entity)
 		{
 			this.SendPropertyChanging();
@@ -2415,6 +2228,18 @@ namespace DDT.Models
 		}
 		
 		private void detach_Effects(Effect entity)
+		{
+			this.SendPropertyChanging();
+			entity.Character = null;
+		}
+		
+		private void attach_FortBonuses(FortBonuse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Character = this;
+		}
+		
+		private void detach_FortBonuses(FortBonuse entity)
 		{
 			this.SendPropertyChanging();
 			entity.Character = null;
@@ -2564,6 +2389,181 @@ namespace DDT.Models
 					if ((value != null))
 					{
 						value.Effects.Add(this);
+						this._CharacterId = value.Id;
+					}
+					else
+					{
+						this._CharacterId = default(int);
+					}
+					this.SendPropertyChanged("Character");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FortBonuses")]
+	public partial class FortBonuse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CharacterId;
+		
+		private int _BonusAmount;
+		
+		private int _ExpirationKey;
+		
+		private EntityRef<Character> _Character;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCharacterIdChanging(int value);
+    partial void OnCharacterIdChanged();
+    partial void OnBonusAmountChanging(int value);
+    partial void OnBonusAmountChanged();
+    partial void OnExpirationKeyChanging(int value);
+    partial void OnExpirationKeyChanged();
+    #endregion
+		
+		public FortBonuse()
+		{
+			this._Character = default(EntityRef<Character>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
+		public int CharacterId
+		{
+			get
+			{
+				return this._CharacterId;
+			}
+			set
+			{
+				if ((this._CharacterId != value))
+				{
+					if (this._Character.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCharacterIdChanging(value);
+					this.SendPropertyChanging();
+					this._CharacterId = value;
+					this.SendPropertyChanged("CharacterId");
+					this.OnCharacterIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BonusAmount", DbType="Int NOT NULL")]
+		public int BonusAmount
+		{
+			get
+			{
+				return this._BonusAmount;
+			}
+			set
+			{
+				if ((this._BonusAmount != value))
+				{
+					this.OnBonusAmountChanging(value);
+					this.SendPropertyChanging();
+					this._BonusAmount = value;
+					this.SendPropertyChanged("BonusAmount");
+					this.OnBonusAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpirationKey", DbType="Int NOT NULL")]
+		public int ExpirationKey
+		{
+			get
+			{
+				return this._ExpirationKey;
+			}
+			set
+			{
+				if ((this._ExpirationKey != value))
+				{
+					this.OnExpirationKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ExpirationKey = value;
+					this.SendPropertyChanged("ExpirationKey");
+					this.OnExpirationKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
+		public Character Character
+		{
+			get
+			{
+				return this._Character.Entity;
+			}
+			set
+			{
+				Character previousValue = this._Character.Entity;
+				if (((previousValue != value) 
+							|| (this._Character.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Character.Entity = null;
+						previousValue.FortBonuses.Remove(this);
+					}
+					this._Character.Entity = value;
+					if ((value != null))
+					{
+						value.FortBonuses.Add(this);
 						this._CharacterId = value.Id;
 					}
 					else

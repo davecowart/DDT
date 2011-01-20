@@ -44,38 +44,22 @@
 				<div class="span-3">
 					<h3>AC</h3>
 					<p><%: Model.Character.AC %></p>
-					<ul>
-							<% foreach (var bonus in Model.ACBonuses) { %>
-								<li><%: bonus.BonusAmount %> <%: bonus.ExpirationKey %></li>
-							<% } %>
-					</ul>
+                    <% Html.RenderPartial("ACBonusList", Model.ACBonuses); %>
 				</div>
 				<div class="span-3">
 					<h3>FORT</h3>
 					<p><%: Model.Character.Fortitude %></p>
-					<ul>
-							<% foreach (var bonus in Model.FortBonuses) { %>
-								<li><%: bonus.BonusAmount %> <%: bonus.ExpirationKey %></li>
-							<% } %>
-					</ul>
+                    <% Html.RenderPartial("FortBonusList", Model.FortBonuses); %>
 				</div>
 				<div class="span-3">
-					<h3>AC</h3>
+					<h3>REF</h3>
 					<p><%: Model.Character.Reflex %></p>
-					<ul>
-							<% foreach (var bonus in Model.ReflexBonuses) { %>
-								<li><%: bonus.BonusAmount %> <%: bonus.ExpirationKey %></li>
-							<% } %>
-					</ul>
+                    <% Html.RenderPartial("RefBonusList", Model.ReflexBonuses); %>
 				</div>
 				<div class="span-3 last">
-					<h3>AC</h3>
+					<h3>WILL</h3>
 					<p><%: Model.Character.Will %></p>
-					<ul>
-							<% foreach (var bonus in Model.WillBonuses) { %>
-								<li><%: bonus.BonusAmount %> <%: bonus.ExpirationKey %></li>
-							<% } %>
-					</ul>
+                    <% Html.RenderPartial("WillBonusList", Model.WillBonuses); %>
 				</div>
 			</div>
 		</div>

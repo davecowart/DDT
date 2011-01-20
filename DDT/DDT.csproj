@@ -76,6 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DDT.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\IBonus.cs" />
     <Compile Include="Models\ViewModels\CharacterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -115,10 +116,17 @@
     <Content Include="Views\Character\Create.aspx" />
     <Content Include="Views\Character\Details.aspx" />
     <Content Include="Views\Character\Index.aspx" />
+    <Content Include="Views\Shared\Bonus.ascx" />
+    <Content Include="Views\Shared\BonusEditorRow.ascx" />
+    <Content Include="Views\Shared\ACBonusList.ascx" />
+    <Content Include="Views\Shared\BonusList.ascx" />
     <Content Include="Views\Shared\Effect.ascx" />
     <Content Include="Views\Shared\EffectEditorRow.ascx" />
+    <Content Include="Views\Shared\FortBonusList.ascx" />
     <Content Include="Views\Shared\Power.ascx" />
     <Content Include="Views\Shared\PowerEditorRow.ascx" />
+    <Content Include="Views\Shared\RefBonusList.ascx" />
+    <Content Include="Views\Shared\WillBonusList.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

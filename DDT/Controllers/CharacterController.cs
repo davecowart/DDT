@@ -83,6 +83,73 @@ namespace DDT.Controllers {
 			}
 		}
 
+		public ViewResult BlankACBonusRow() {
+			return View("BonusEditorRow", new ACBonuse());
+		}
+
+		[HttpPost]
+		public ActionResult AddACBonus(int characterId, IEnumerable<ACBonuse> bonuses) {
+			try {
+				var bonus = bonuses.First();
+				bonus.CharacterId = characterId;
+				_db.ACBonuses.InsertOnSubmit(bonus);
+				_db.SubmitChanges();
+				return View("Bonus", bonus);
+			} catch {
+				return Json("Error");
+			}
+		}
+
+		public ViewResult BlankFortBonusRow() {
+			return View("BonusEditorRow", new FortBonuse());
+		}
+
+		[HttpPost]
+		public ActionResult AddFortBonus(int characterId, IEnumerable<FortBonuse> bonuses) {
+			try {
+				var bonus = bonuses.First();
+				bonus.CharacterId = characterId;
+				_db.FortBonuses.InsertOnSubmit(bonus);
+				_db.SubmitChanges();
+				return View("Bonus", bonus);
+			} catch {
+				return Json("Error");
+			}
+		}
+
+		public ViewResult BlankRefBonusRow() {
+			return View("BonusEditorRow", new ReflexBonuse());
+		}
+
+		[HttpPost]
+		public ActionResult AddRefBonus(int characterId, IEnumerable<ReflexBonuse> bonuses) {
+			try {
+				var bonus = bonuses.First();
+				bonus.CharacterId = characterId;
+				_db.ReflexBonuses.InsertOnSubmit(bonus);
+				_db.SubmitChanges();
+				return View("Bonus", bonus);
+			} catch {
+				return Json("Error");
+			}
+		}
+
+		public ViewResult BlankWillBonusRow() {
+			return View("BonusEditorRow", new WillBonuse());
+		}
+
+		[HttpPost]
+		public ActionResult AddWillBonus(int characterId, IEnumerable<WillBonuse> bonuses) {
+			try {
+				var bonus = bonuses.First();
+				bonus.CharacterId = characterId;
+				_db.WillBonuses.InsertOnSubmit(bonus);
+				_db.SubmitChanges();
+				return View("Bonus", bonus);
+			} catch {
+				return Json("Error");
+			}
+		}
 
 	}
 }

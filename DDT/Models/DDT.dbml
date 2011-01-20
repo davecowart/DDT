@@ -22,15 +22,6 @@
       <Association Name="Character_ACBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.FortBonuses" Member="FortBonuses">
-    <Type Name="FortBonuse">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Character_FortBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ReflexBonuses" Member="ReflexBonuses">
     <Type Name="ReflexBonuse">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -99,10 +90,10 @@
       <Column Name="UnarmedRangedDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="Character_Power" Member="Powers" ThisKey="Id" OtherKey="CharacterId" Type="Power" />
       <Association Name="Character_ACBonuse" Member="ACBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ACBonuse" />
-      <Association Name="Character_FortBonuse" Member="FortBonuses" ThisKey="Id" OtherKey="CharacterId" Type="FortBonuse" />
       <Association Name="Character_ReflexBonuse" Member="ReflexBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ReflexBonuse" />
       <Association Name="Character_WillBonuse" Member="WillBonuses" ThisKey="Id" OtherKey="CharacterId" Type="WillBonuse" />
       <Association Name="Character_Effect" Member="Effects" ThisKey="Id" OtherKey="CharacterId" Type="Effect" />
+      <Association Name="Character_FortBonuse" Member="FortBonuses" ThisKey="Id" OtherKey="CharacterId" Type="FortBonuse" />
     </Type>
   </Table>
   <Table Name="dbo.Effects" Member="Effects">
@@ -112,6 +103,15 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Character_Effect" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FortBonuses" Member="FortBonuses">
+    <Type Name="FortBonuse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_FortBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

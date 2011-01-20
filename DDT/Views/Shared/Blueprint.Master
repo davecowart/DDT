@@ -6,18 +6,14 @@
 	<title>
 		<asp:ContentPlaceHolder ID="TitleContent" runat="server" />
 	</title>
-	<link href="<%=this.ResolveUrl("~/Content/blueprint/screen.css")%>" rel="stylesheet"
-		type="text/css" />
-	<link href="<%=this.ResolveUrl("~/Content/blueprint/print.css")%>" rel="stylesheet"
-		type="text/css" />
+	<link href="<%=this.ResolveUrl("~/Content/blueprint/screen.css")%>" rel="stylesheet" type="text/css" media="screen, projection" />
+	<link href="<%=this.ResolveUrl("~/Content/blueprint/print.css")%>" rel="stylesheet" type="text/css" media="print" />
 	<!--[if lt IE 8]>
 		<link href="<%=this.ResolveUrl("~/Content/blueprint/ie.css")%>" rel="stylesheet" type="text/css" />
 	<![endif]-->
 	<link href="<%=this.ResolveUrl("~/Content/Site.css")%>" rel="stylesheet" type="text/css" />
 	<script src="<%=this.ResolveUrl("~/Scripts/jquery-1.4.1.min.js")%>" type="text/javascript"></script>
-	<script src="<%=this.ResolveUrl("~/Scripts/jquery.unobtrusive-ajax.min.js")%>" type="text/javascript"></script>
 	<script src="<%=this.ResolveUrl("~/Scripts/jquery.validate.min.js")%>" type="text/javascript"></script>
-	<script src="<%=this.ResolveUrl("~/Scripts/jquery.validate.unobtrusive.min.js")%>" type="text/javascript"></script>
 	<script src="<%=this.ResolveUrl("~/Scripts/jquery.form.js")%>"type="text/javascript"></script>
 	<script src="<%=this.ResolveUrl("~/Scripts/Character.js")%>" type="text/javascript"></script>
 	
