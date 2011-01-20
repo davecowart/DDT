@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db192" Class="DDTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=db000.appharbor.net;Initial Catalog=db192;Persist Security Info=True;User ID=db192" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="db192ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Powers" Member="Powers">
+    <Type Name="Power">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Attack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Damage" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Effect" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Hit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Miss" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACBonuses" Member="ACBonuses">
+    <Type Name="ACBonuse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_ACBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FortBonuses" Member="FortBonuses">
+    <Type Name="FortBonuse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_FortBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReflexBonuses" Member="ReflexBonuses">
+    <Type Name="ReflexBonuse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_ReflexBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WillBonuses" Member="WillBonuses">
+    <Type Name="WillBonuse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_WillBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Characters" Member="Characters">
+    <Type Name="Character">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Race" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HPMax" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HPTemp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HPCurrent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SurgesDaily" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SurgesUsed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Strength" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Constitution" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Dexterity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intellect" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Wisdom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Charisma" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fortitude" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Reflex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Will" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActionPoints" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DeathSaves" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Acrobatics" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Arcana" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Athletics" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Bluff" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Diplomacy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Dungeoneering" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Endurance" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Heal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="History" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Insight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intimidate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nature" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Perception" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Religion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Stealth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Streetwise" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Thievery" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MeleeBasicAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RangedBasicAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnarmedMeleeAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnarmedRangedAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MeleeBasicDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="RangedBasicDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="UnarmedMeleeDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="UnarmedRangedDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Character_Power" Member="Powers" ThisKey="Id" OtherKey="CharacterId" Type="Power" />
+      <Association Name="Character_ACBonuse" Member="ACBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ACBonuse" />
+      <Association Name="Character_FortBonuse" Member="FortBonuses" ThisKey="Id" OtherKey="CharacterId" Type="FortBonuse" />
+      <Association Name="Character_ReflexBonuse" Member="ReflexBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ReflexBonuse" />
+      <Association Name="Character_WillBonuse" Member="WillBonuses" ThisKey="Id" OtherKey="CharacterId" Type="WillBonuse" />
+      <Association Name="Character_Effect" Member="Effects" ThisKey="Id" OtherKey="CharacterId" Type="Effect" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Effects" Member="Effects">
+    <Type Name="Effect">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_Effect" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

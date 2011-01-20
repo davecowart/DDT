@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DDT.Models.ViewModels;
+using DDT.Models;
 
 namespace DDT {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -16,7 +18,7 @@ namespace DDT {
 			routes.MapRoute(
 					"Default", // Route name
 					"{controller}/{action}/{id}", // URL with parameters
-					new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+					new { controller = "Character", action = "Index", id = UrlParameter.Optional } // Parameter defaults
 			);
 
 		}
