@@ -35,5 +35,24 @@ namespace DDT.Controllers {
 			return View(charVM);
 		}
 
+		public ViewResult BlankPowerRow() {
+			return View("PowerEditorRow", new Power());
+		}
+
+		[HttpPost]
+		public ActionResult AddPower(int characterId, IEnumerable<Power> powers) {
+			try {
+				var power = powers.First();
+				power.CharacterId = characterId;
+				_db.Powers.InsertOnSubmit(power);
+				_db.SubmitChanges();
+				return View("Power", power);
+			} catch {
+				return Json("Error");
+			}
+		}
+
+
+
 	}
 }

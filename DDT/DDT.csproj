@@ -70,6 +70,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
     <Compile Include="Models\DDT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,9 +110,13 @@
     <Content Include="Content\blueprint\_examples\valid.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\character.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Views\Character\Create.aspx" />
     <Content Include="Views\Character\Details.aspx" />
     <Content Include="Views\Character\Index.aspx" />
+    <Content Include="Views\Shared\Power.ascx" />
+    <Content Include="Views\Shared\PowerEditorRow.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

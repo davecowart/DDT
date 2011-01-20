@@ -195,11 +195,12 @@
 			</div>
 		</div>
 		<div>
-			<div id="powers">
+			<div id="powers" class="span-24 last">
+				<% using (Html.BeginForm("AddPower", "Character", FormMethod.Post, new { id = "powerForm" })) { %>
 				<table>
 					<thead>
 						<tr>
-							<th></th>
+							<th>Name</th>
 							<th>Attack</th>
 							<th>Damage</th>
 							<th>Effects</th>
@@ -207,19 +208,15 @@
 							<th>Miss</th>
 						</tr>
 					</thead>
-					<tbody>
-						<% foreach (var power in Model.Powers) { %>
-							<tr>
-								<td><%: power.Name %></td>
-								<td><%: power.Attack %></td>
-								<td><%: power.Damage %></td>
-								<td><%: power.Effect %></td>
-								<td><%: power.Hit %></td>
-								<td><%: power.Miss %></td>
-							</tr>
-						<% } %>
+					<tbody id="powerRows">
+						<% foreach (var power in Model.Powers) {
+							Html.RenderPartial("Power", power);
+						} %>
 					</tbody>
 				</table>
+				<%: Html.ActionLink("New Power", "BlankPowerRow", null, new { id = "addPower" })%>
+				<% } %>
 			</div>
 		</div>
+		<%: Html.Hidden("characterId", Model.Character.Id) %>
 </asp:Content>
