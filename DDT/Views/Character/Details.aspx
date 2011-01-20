@@ -80,7 +80,7 @@
 				</div>
 				<div class="span-3">
 					<h4>Temp</h4>
-					<p><%: Model.Character.HPTemp %></p>
+                    <p><%: Html.TextBoxFor(model => Model.Character.HPTemp, new { @class = "span-3 last" })%></p>
 				</div>
 				<div class="span-3">
 					<h4>Bloodied</h4>

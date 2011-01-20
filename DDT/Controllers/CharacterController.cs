@@ -230,6 +230,20 @@ namespace DDT.Controllers {
 			}
 		}
 
+		[HttpPost]
+		public ActionResult SetTempHP(int characterId, int hp) {
+			try {
+				var character = _db.Characters.SingleOrDefault(c => c.Id == characterId);
+				if (character == null)
+					return Json("Error");
+				character.HPTemp = hp;
+				_db.SubmitChanges();
+				return Json(new { hp = hp });
+			} catch {
+				return Json("Error");
+			}
+		}
+
 		#endregion
 
 	}

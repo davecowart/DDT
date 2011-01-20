@@ -123,4 +123,16 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#Character_HPTemp").blur(function () {
+        var box = $(this);
+        $.ajax({
+            url: '/Character/SetTempHP',
+            type: 'POST',
+            data: { characterId: getCharacterId(), hp: box.val() },
+            success: function (result) {
+                box.val(result.hp);
+            }
+        });
+    });
 });
