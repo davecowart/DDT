@@ -70,6 +70,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\FormulaHelper.cs" />
     <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
     <Compile Include="Models\DDT.designer.cs">
@@ -77,7 +78,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DDT.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExpirationKeys.cs" />
     <Compile Include="Models\IBonus.cs" />
+    <Compile Include="Models\IExpirable.cs" />
     <Compile Include="Models\ViewModels\CharacterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

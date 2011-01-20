@@ -5,7 +5,7 @@
     <% using (Html.BeginCollectionItem("effects")) { %>
         <%: Html.ValidationSummary(true)%>
         <%: Html.TextBoxFor(model => model.Name)%>
-        <%: Html.TextBoxFor(model => model.ExpirationKey)%>
+        <%: Html.DropDownListFor(model => model.ExpirationKey, Model.ExpirationKeyEnum.ToSelectList()) %>
         <input type="submit" value="Add" />
     <% } %>
 </li>

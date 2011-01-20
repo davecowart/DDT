@@ -4,7 +4,7 @@
     <% using (Html.BeginCollectionItem("bonuses")) { %>
         <%: Html.ValidationSummary(true) %>
 		<%: Html.TextBoxFor(model => model.BonusAmount) %>
-        <%: Html.TextBoxFor(model => model.ExpirationKey) %>
+        <%: Html.DropDownListFor(model => model.ExpirationKey, Model.ExpirationKeyEnum.ToSelectList()) %>
         <input type="submit" value="Add" />
     <% } %>
 </li>
