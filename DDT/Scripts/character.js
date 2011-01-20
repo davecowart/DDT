@@ -111,4 +111,16 @@ $(document).ready(function () {
         });
         return false;
     });
+
+    $("#Character_HPCurrent").blur(function () {
+        var box = $(this);
+        $.ajax({
+            url: '/Character/SetCurrentHP',
+            type: 'POST',
+            data: { characterId: getCharacterId(), hp: box.val() },
+            success: function (result) {
+                box.val(result.hp);
+            }
+        });
+    });
 });

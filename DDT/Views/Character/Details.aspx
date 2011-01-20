@@ -76,7 +76,7 @@
 				</div>
 				<div class="span-3">
 					<h4>Current</h4>
-					<p><%: Model.Character.HPCurrent %></p>
+                    <p><%: Html.TextBoxFor(model => Model.Character.HPCurrent, new { @class = "span-3 last" })%></p>
 				</div>
 				<div class="span-3">
 					<h4>Temp</h4>

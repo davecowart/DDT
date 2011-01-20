@@ -35,6 +35,8 @@ namespace DDT.Controllers {
 			return View(charVM);
 		}
 
+		#region Powers
+
 		public ViewResult BlankPowerRow() {
 			return View("PowerEditorRow", new Power());
 		}
@@ -51,6 +53,10 @@ namespace DDT.Controllers {
 				return Json("Error");
 			}
 		}
+
+		#endregion
+
+		#region Effects
 
 		public ViewResult BlankEffectRow() {
 			return View("EffectEditorRow", new Effect());
@@ -82,6 +88,10 @@ namespace DDT.Controllers {
 				return Json("Error");
 			}
 		}
+
+		#endregion
+
+		#region Defensive Bonuses
 
 		public ViewResult BlankACBonusRow() {
 			return View("BonusEditorRow", new ACBonuse());
@@ -200,6 +210,27 @@ namespace DDT.Controllers {
 			_db.WillBonuses.DeleteOnSubmit(bonus);
 			_db.SubmitChanges();
 		}
+
+		#endregion
+
+		#region AjaxFields
+
+		[HttpPost]
+		public ActionResult SetCurrentHP(int characterId, int hp) {
+			try {
+				var character = _db.Characters.SingleOrDefault(c => c.Id == characterId);
+				if (character == null)
+					return Json("Error");
+				var normalizedHP = Math.Min(character.HPMax, hp);
+				character.HPCurrent = normalizedHP;
+				_db.SubmitChanges();
+				return Json(new { hp = normalizedHP });
+			} catch {
+				return Json("Error");
+			}
+		}
+
+		#endregion
 
 	}
 }
