@@ -99,7 +99,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $(".removeEffect").click(function () {
+    $(".removeLink").click(function () {
         var link = $(this);
         $.ajax({
             url: this.href,

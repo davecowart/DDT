@@ -151,5 +151,55 @@ namespace DDT.Controllers {
 			}
 		}
 
+		[HttpDelete]
+		public ActionResult RemoveBonus(int id, int characterId, string bonusType) {
+			try {
+				IBonus bonus = null;
+				switch (bonusType) {
+					case "ac":
+						bonus = _db.ACBonuses.SingleOrDefault(b => b.Id == id);
+						DeleteBonus(bonus as ACBonuse);
+						break;
+					case "fort":
+						bonus = _db.FortBonuses.SingleOrDefault(b => b.Id == id);
+						DeleteBonus(bonus as FortBonuse);
+						break;
+					case "ref":
+						bonus = _db.ReflexBonuses.SingleOrDefault(b => b.Id == id);
+						DeleteBonus(bonus as ReflexBonuse);
+						break;
+					case "will":
+						bonus = _db.WillBonuses.SingleOrDefault(b => b.Id == id);
+						DeleteBonus(bonus as WillBonuse);
+						break;
+				}
+				if (bonus == null)
+					return Json("Error");
+				return Json(new { success = true });
+			} catch {
+				return Json("Error");
+			}
+		}
+
+		private void DeleteBonus(ACBonuse bonus) {
+			_db.ACBonuses.DeleteOnSubmit(bonus);
+			_db.SubmitChanges();
+		}
+
+		private void DeleteBonus(FortBonuse bonus) {
+			_db.FortBonuses.DeleteOnSubmit(bonus);
+			_db.SubmitChanges();
+		}
+
+		private void DeleteBonus(ReflexBonuse bonus) {
+			_db.ReflexBonuses.DeleteOnSubmit(bonus);
+			_db.SubmitChanges();
+		}
+
+		private void DeleteBonus(WillBonuse bonus) {
+			_db.WillBonuses.DeleteOnSubmit(bonus);
+			_db.SubmitChanges();
+		}
+
 	}
 }

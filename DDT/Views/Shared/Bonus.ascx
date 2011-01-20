@@ -1,2 +1,2 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<DDT.Models.IBonus>" %>
-<li><%: Model.BonusAmount %> <%: Model.ExpirationKey %></li>
+<li><%: Model.BonusAmount %> <%: Model.ExpirationKey %> <%: Html.ActionLink("X", "RemoveBonus", new { id = Model.Id, bonusType = Model.Prefix }, new { @class = "removeLink" }) %></li>
