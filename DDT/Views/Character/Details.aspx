@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Blueprint.Master" Inherits="System.Web.Mvc.ViewPage<DDT.Models.ViewModels.CharacterViewModel>" %>
+<%@ Import Namespace="DDT.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Details
@@ -20,22 +21,22 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><%: Model.Character.Strength %> STR</td><td>X</td><td>X</td>
+							<td><%: Model.Character.Strength %> STR</td><td><%: Html.AbilityModifier(Model.Character.Strength) %></td><td><%: Html.AbilityModifierPlusHalf(Model.Character.Strength, Model.Character.Level) %></td>
 						</tr>
 						<tr>
-							<td><%: Model.Character.Constitution %> CON</td><td>X</td><td>X</td>
+							<td><%: Model.Character.Constitution %> CON</td><td><%: Html.AbilityModifier(Model.Character.Constitution)%></td><td><%: Html.AbilityModifierPlusHalf(Model.Character.Constitution, Model.Character.Level)%></td>
 						</tr>
 						<tr>
-							<td><%: Model.Character.Dexterity %> DEX</td><td>X</td><td>X</td>
+							<td><%: Model.Character.Dexterity %> DEX</td><td><%: Html.AbilityModifier(Model.Character.Dexterity)%></td><td><%: Html.AbilityModifierPlusHalf(Model.Character.Dexterity, Model.Character.Level)%></td>
 						</tr>
 						<tr>
-							<td><%: Model.Character.Intellect %> INT</td><td>X</td><td>X</td>
+							<td><%: Model.Character.Intellect %> INT</td><td><%: Html.AbilityModifier(Model.Character.Intellect)%></td><td><%: Html.AbilityModifierPlusHalf(Model.Character.Intellect, Model.Character.Level)%></td>
 						</tr>
 						<tr>
-							<td><%: Model.Character.Wisdom %> WIS</td><td>X</td><td>X</td>
+							<td><%: Model.Character.Wisdom %> WIS</td><td><%: Html.AbilityModifier(Model.Character.Wisdom)%></td><td><%: Html.AbilityModifierPlusHalf(Model.Character.Wisdom, Model.Character.Level)%></td>
 						</tr>
 						<tr>
-							<td><%: Model.Character.Charisma %> CHA</td><td>X</td><td>X</td>
+							<td><%: Model.Character.Charisma %> CHA</td><td><%: Html.AbilityModifier(Model.Character.Charisma)%></td><td><%: Html.AbilityModifierPlusHalf(Model.Character.Charisma, Model.Character.Level)%></td>
 						</tr>
 					</tbody>
 				</table>
