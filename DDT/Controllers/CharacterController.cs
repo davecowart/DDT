@@ -52,6 +52,36 @@ namespace DDT.Controllers {
 			}
 		}
 
+		public ViewResult BlankEffectRow() {
+			return View("EffectEditorRow", new Effect());
+		}
+
+		[HttpPost]
+		public ActionResult AddEffect(int characterId, IEnumerable<Effect> effects) {
+			try {
+				var effect = effects.First();
+				effect.CharacterId = characterId;
+				_db.Effects.InsertOnSubmit(effect);
+				_db.SubmitChanges();
+				return View("Effect", effect);
+			} catch {
+				return Json("Error");
+			}
+		}
+
+		[HttpDelete]
+		public ActionResult RemoveEffect(int id, int characterId) {
+			try {
+				var effect = _db.Effects.SingleOrDefault(e => e.Id == id);
+				if (effect == null)
+					return Json("Error");
+				_db.Effects.DeleteOnSubmit(effect);
+				_db.SubmitChanges();
+				return Json(new { success = true });
+			} catch {
+				return Json("Error");
+			}
+		}
 
 
 	}

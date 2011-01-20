@@ -119,11 +119,14 @@
 			<div id="effects" class="span-12">
 				<div>
 				<h2>Conditions/Effects</h2>
-				<ul>
-					<% foreach (var effect in Model.Effects) { %>
-						<li><%: effect.Name %> <%: effect.ExpirationKey %></li>
-					<% } %>
+				<% using (Html.BeginForm("AddEffect", "Character", FormMethod.Post, new { id = "effectForm" })) { %>
+				<ul id="effectRows">
+					<% foreach (var effect in Model.Effects) {
+                        Html.RenderPartial("Effect", effect);
+					} %>
 				</ul>
+                <%: Html.ActionLink("Add Effect", "BlankEffectRow", null, new { id = "addEffect" })%>
+                <% } %>
 				</div>
 				<div id="basicattacks">
 					<table>
@@ -214,7 +217,7 @@
 						} %>
 					</tbody>
 				</table>
-				<%: Html.ActionLink("New Power", "BlankPowerRow", null, new { id = "addPower" })%>
+				<%: Html.ActionLink("Add Power", "BlankPowerRow", null, new { id = "addPower" })%>
 				<% } %>
 			</div>
 		</div>

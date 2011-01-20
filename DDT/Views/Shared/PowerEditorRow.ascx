@@ -21,7 +21,7 @@
 		</td>
 		<td>
 			<%: Html.TextBoxFor(model => model.Miss) %>
-			<input type="submit" value="Create" />
+			<input type="submit" value="Add" />
 		</td>
 	<% } %>
 </tr>

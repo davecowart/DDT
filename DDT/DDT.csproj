@@ -115,6 +115,8 @@
     <Content Include="Views\Character\Create.aspx" />
     <Content Include="Views\Character\Details.aspx" />
     <Content Include="Views\Character\Index.aspx" />
+    <Content Include="Views\Shared\Effect.ascx" />
+    <Content Include="Views\Shared\EffectEditorRow.ascx" />
     <Content Include="Views\Shared\Power.ascx" />
     <Content Include="Views\Shared\PowerEditorRow.ascx" />
     <Content Include="Web.config">
