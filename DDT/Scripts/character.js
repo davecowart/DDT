@@ -143,7 +143,19 @@ $(document).ready(function () {
             type: 'POST',
             data: { characterId: getCharacterId(), surges: box.val() },
             success: function (result) {
-                box.val(result.hp);
+                box.val(result.surges);
+            }
+        });
+    });
+
+    $("#Character_ActionPoints").blur(function () {
+        var box = $(this);
+        $.ajax({
+            url: '/Character/SetActionPoints',
+            type: 'POST',
+            data: { characterId: getCharacterId(), actionPoints: box.val() },
+            success: function (result) {
+                box.val(result.actionPoints);
             }
         });
     });

@@ -100,7 +100,7 @@
 				</div>
 				<div class="span-3 last">
 					<h4>Action Points</h4>
-					<p><%: Model.Character.ActionPoints %></p>
+                    <p><%: Html.TextBoxFor(model => Model.Character.ActionPoints, new { @class = "span-3 last" })%></p>
 				</div>
 			</div>
 		</div>

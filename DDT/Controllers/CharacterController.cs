@@ -258,6 +258,20 @@ namespace DDT.Controllers {
 			}
 		}
 
+		[HttpPost]
+		public ActionResult SetActionPoints(int characterId, int actionPoints) {
+			try {
+				var character = _db.Characters.SingleOrDefault(c => c.Id == characterId);
+				if (character == null)
+					return Json("Error");
+				character.ActionPoints = actionPoints;
+				_db.SubmitChanges();
+				return Json(new { actionPoints = actionPoints });
+			} catch {
+				return Json("Error");
+			}
+		}
+
 		#endregion
 
 	}
