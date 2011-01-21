@@ -135,4 +135,16 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#Character_SurgesUsed").blur(function () {
+        var box = $(this);
+        $.ajax({
+            url: '/Character/SetSurgesUsed',
+            type: 'POST',
+            data: { characterId: getCharacterId(), surges: box.val() },
+            success: function (result) {
+                box.val(result.hp);
+            }
+        });
+    });
 });

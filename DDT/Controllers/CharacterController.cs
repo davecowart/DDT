@@ -244,6 +244,20 @@ namespace DDT.Controllers {
 			}
 		}
 
+		[HttpPost]
+		public ActionResult SetSurgesUsed(int characterId, int surges) {
+			try {
+				var character = _db.Characters.SingleOrDefault(c => c.Id == characterId);
+				if (character == null)
+					return Json("Error");
+				character.SurgesUsed = surges;
+				_db.SubmitChanges();
+				return Json(new { surges = surges });
+			} catch {
+				return Json("Error");
+			}
+		}
+
 		#endregion
 
 	}

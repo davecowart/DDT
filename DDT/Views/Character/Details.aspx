@@ -96,7 +96,7 @@
 				</div>
 				<div class="span-3">
 					<h4>Surges Used</h4>
-					<p><%: Model.Character.SurgesUsed %></p>
+                    <p><%: Html.TextBoxFor(model => Model.Character.SurgesUsed, new { @class = "span-3 last" })%></p>
 				</div>
 				<div class="span-3 last">
 					<h4>Action Points</h4>
