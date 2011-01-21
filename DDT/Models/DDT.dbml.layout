@@ -2,12 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 15.875" name="DDT">
   <DataContextMoniker Name="/DDTDataContext" />
   <nestedChildShapes>
-    <classShape Id="22f1f2ed-7b70-4c20-9eb4-003dae8012ef" absoluteBounds="3.5, 8.375, 2, 2.3478011067708344">
-      <DataClassMoniker Name="/DDTDataContext/Power" />
-      <nestedChildShapes>
-        <elementListCompartment Id="826368bf-9348-4b3a-aa6b-c478e635844d" absoluteBounds="3.515, 8.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="3ea1c92d-ccd3-4ffa-91ff-b896f4d99f7e" absoluteBounds="3.5, 1.375, 2, 1.5785953776041666">
       <DataClassMoniker Name="/DDTDataContext/ACBonuse" />
       <nestedChildShapes>
@@ -32,13 +26,6 @@
         <elementListCompartment Id="1cab265f-a29b-4018-a05f-dc28850ddaf0" absoluteBounds="0.89, 3.96, 1.9700000000000002, 9.0952555338541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 9.54890055338542); (3.5 : 9.54890055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/DDTDataContext/Character/Character_Power" />
-      <nodes>
-        <classShapeMoniker Id="425670d6-6b66-4227-9608-f28e1170406a" />
-        <classShapeMoniker Id="22f1f2ed-7b70-4c20-9eb4-003dae8012ef" />
-      </nodes>
-    </associationConnector>
     <associationConnector edgePoints="[(2.875 : 3.5); (3.5 : 2.95359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DDTDataContext/Character/Character_ACBonuse" />
       <nodes>
@@ -79,11 +66,24 @@
         <elementListCompartment Id="ca3c2dbd-09ee-403a-bc95-39e34aa37d60" absoluteBounds="3.64, 4.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 4.78929768880208); (3.625 : 4.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 4.78929768880208); (3.625 : 4.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DDTDataContext/Character/Character_FortBonuse" />
       <nodes>
         <classShapeMoniker Id="425670d6-6b66-4227-9608-f28e1170406a" />
         <classShapeMoniker Id="10c4c7bc-90e4-43fa-b96a-6b6c4e328500" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="651650f6-0be4-4ff1-bac1-3a05de9fd22b" absoluteBounds="3.5, 8.25, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/DDTDataContext/Power" />
+      <nestedChildShapes>
+        <elementListCompartment Id="48b5cefd-a867-4be8-9339-221cdb963162" absoluteBounds="3.515, 8.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.875 : 9.61620198567708); (3.5 : 9.61620198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DDTDataContext/Character/Character_Power" />
+      <nodes>
+        <classShapeMoniker Id="425670d6-6b66-4227-9608-f28e1170406a" />
+        <classShapeMoniker Id="651650f6-0be4-4ff1-bac1-3a05de9fd22b" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

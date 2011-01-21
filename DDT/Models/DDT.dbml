@@ -1,18 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db192" Class="DDTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=db000.appharbor.net;Initial Catalog=db192;Persist Security Info=True;User ID=db192" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="db192ConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Powers" Member="Powers">
-    <Type Name="Power">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Attack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Damage" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Effect" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Hit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Miss" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ACBonuses" Member="ACBonuses">
     <Type Name="ACBonuse">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -88,12 +75,12 @@
       <Column Name="RangedBasicDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="UnarmedMeleeDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="UnarmedRangedDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="Character_Power" Member="Powers" ThisKey="Id" OtherKey="CharacterId" Type="Power" />
       <Association Name="Character_ACBonuse" Member="ACBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ACBonuse" />
       <Association Name="Character_ReflexBonuse" Member="ReflexBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ReflexBonuse" />
       <Association Name="Character_WillBonuse" Member="WillBonuses" ThisKey="Id" OtherKey="CharacterId" Type="WillBonuse" />
       <Association Name="Character_Effect" Member="Effects" ThisKey="Id" OtherKey="CharacterId" Type="Effect" />
       <Association Name="Character_FortBonuse" Member="FortBonuses" ThisKey="Id" OtherKey="CharacterId" Type="FortBonuse" />
+      <Association Name="Character_Power" Member="Powers" ThisKey="Id" OtherKey="CharacterId" Type="Power" />
     </Type>
   </Table>
   <Table Name="dbo.Effects" Member="Effects">
@@ -112,6 +99,21 @@
       <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Character_FortBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Powers" Member="Powers">
+    <Type Name="Power">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Attack" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Damage" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Effect" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Hit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Miss" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Range" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Cooldown" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

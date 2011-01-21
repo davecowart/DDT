@@ -73,6 +73,7 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\FormulaHelper.cs" />
     <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
+    <Compile Include="Models\Cooldowns.cs" />
     <Compile Include="Models\DDT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -80,6 +81,7 @@
     </Compile>
     <Compile Include="Models\ExpirationKeys.cs" />
     <Compile Include="Models\IBonus.cs" />
+    <Compile Include="Models\ICooldownable.cs" />
     <Compile Include="Models\IExpirable.cs" />
     <Compile Include="Models\ViewModels\CharacterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

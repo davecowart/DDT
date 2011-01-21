@@ -44,27 +44,27 @@
 			<div id="defenses" class="span-16 last">
 				<div class="span-4">
 					<h3>AC</h3>
-                    <p><strong><%: Model.Character.AC + Model.ACBonuses.Sum(b => b.BonusAmount) %></strong></p>
+										<p><strong><%: Model.Character.AC + Model.ACBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.AC %></p>
-                    <% Html.RenderPartial("ACBonusList", Model.ACBonuses); %>
+										<% Html.RenderPartial("ACBonusList", Model.ACBonuses); %>
 				</div>
 				<div class="span-4">
 					<h3>FORT</h3>
-                    <p><strong><%: Model.Character.Fortitude + Model.FortBonuses.Sum(b => b.BonusAmount) %></strong></p>
+										<p><strong><%: Model.Character.Fortitude + Model.FortBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.Fortitude %></p>
-                    <% Html.RenderPartial("FortBonusList", Model.FortBonuses); %>
+										<% Html.RenderPartial("FortBonusList", Model.FortBonuses); %>
 				</div>
 				<div class="span-4">
 					<h3>REF</h3>
-                    <p><strong><%: Model.Character.Reflex + Model.ReflexBonuses.Sum(b => b.BonusAmount) %></strong></p>
+										<p><strong><%: Model.Character.Reflex + Model.ReflexBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.Reflex %></p>
-                    <% Html.RenderPartial("RefBonusList", Model.ReflexBonuses); %>
+										<% Html.RenderPartial("RefBonusList", Model.ReflexBonuses); %>
 				</div>
 				<div class="span-4 last">
 					<h3>WILL</h3>
-                    <p><strong><%: Model.Character.Will + Model.WillBonuses.Sum(b => b.BonusAmount) %></strong></p>
+										<p><strong><%: Model.Character.Will + Model.WillBonuses.Sum(b => b.BonusAmount) %></strong></p>
 					<p><%: Model.Character.Will %></p>
-                    <% Html.RenderPartial("WillBonusList", Model.WillBonuses); %>
+										<% Html.RenderPartial("WillBonusList", Model.WillBonuses); %>
 				</div>
 			</div>
 		</div>
@@ -76,11 +76,11 @@
 				</div>
 				<div class="span-3">
 					<h4>Current</h4>
-                    <p><%: Html.TextBoxFor(model => Model.Character.HPCurrent, new { @class = "span-3 last" })%></p>
+										<p><%: Html.TextBoxFor(model => Model.Character.HPCurrent, new { @class = "span-3 last" })%></p>
 				</div>
 				<div class="span-3">
 					<h4>Temp</h4>
-                    <p><%: Html.TextBoxFor(model => Model.Character.HPTemp, new { @class = "span-3 last" })%></p>
+										<p><%: Html.TextBoxFor(model => Model.Character.HPTemp, new { @class = "span-3 last" })%></p>
 				</div>
 				<div class="span-3">
 					<h4>Bloodied</h4>
@@ -96,11 +96,11 @@
 				</div>
 				<div class="span-3">
 					<h4>Surges Used</h4>
-                    <p><%: Html.TextBoxFor(model => Model.Character.SurgesUsed, new { @class = "span-3 last" })%></p>
+										<p><%: Html.TextBoxFor(model => Model.Character.SurgesUsed, new { @class = "span-3 last" })%></p>
 				</div>
 				<div class="span-3 last">
 					<h4>Action Points</h4>
-                    <p><%: Html.TextBoxFor(model => Model.Character.ActionPoints, new { @class = "span-3 last" })%></p>
+										<p><%: Html.TextBoxFor(model => Model.Character.ActionPoints, new { @class = "span-3 last" })%></p>
 				</div>
 			</div>
 		</div>
@@ -111,11 +111,11 @@
 				<% using (Html.BeginForm("AddEffect", "Character", FormMethod.Post, new { id = "effectForm" })) { %>
 				<ul id="effectRows">
 					<% foreach (var effect in Model.Effects) {
-                        Html.RenderPartial("Effect", effect);
+												Html.RenderPartial("Effect", effect);
 					} %>
 				</ul>
-                <%: Html.ActionLink("Add Effect", "BlankEffectRow", null, new { id = "addEffect" })%>
-                <% } %>
+								<%: Html.ActionLink("Add Effect", "BlankEffectRow", null, new { id = "addEffect" })%>
+								<% } %>
 				</div>
 				<div id="basicattacks">
 					<table>
@@ -193,6 +193,7 @@
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>Range</th>
 							<th>Attack</th>
 							<th>Damage</th>
 							<th>Effects</th>

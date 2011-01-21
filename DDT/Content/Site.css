@@ -2,27 +2,39 @@
 -----------------------------------------------------------*/
 .field-validation-error
 {
-    color: #ff0000;
+		color: #ff0000;
 }
 
 .field-validation-valid
 {
-    display: none;
+		display: none;
 }
 
 .input-validation-error
 {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+		border: 1px solid #ff0000;
+		background-color: #ffeeee;
 }
 
 .validation-summary-errors
 {
-    font-weight: bold;
-    color: #ff0000;
+		font-weight: bold;
+		color: #ff0000;
 }
 
 .validation-summary-valid
 {
-    display: none;
+		display: none;
+}
+
+tr.AtWill {
+	background-color:Green;
+}
+
+tr.Encounter {
+	background-color:Red;
+}
+
+tr.Daily {
+	background-color:Silver;
 }

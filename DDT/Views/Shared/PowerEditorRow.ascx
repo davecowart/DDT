@@ -5,7 +5,11 @@
 	<% using (Html.BeginCollectionItem("powers")) { %>
 	<%: Html.ValidationSummary(true) %>
 		<td>
-			<%: Html.TextBoxFor(model => model.Name) %>
+			<%: Html.TextBoxFor(model => model.Name) %><br />
+			<%: Html.DropDownListFor(model => model.Cooldown, Model.CooldownEnum.ToSelectList()) %>
+		</td>
+		<td>
+			<%: Html.TextBoxFor(model => model.Range) %>
 		</td>
 		<td>
 			<%: Html.TextBoxFor(model => model.Attack) %>
