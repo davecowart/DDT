@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<DDT.Models.Power>" %>
-<tr class="<%: Model.CooldownEnum.ToString() %>">
+<tr class="<%: Model.CooldownEnum.ToString() %> power" id="power_<%: Model.Id %>">
 	<td><%: Model.Name %></td>
 	<td><%: Model.Range %></td>
 	<td><%: Model.Attack %></td>

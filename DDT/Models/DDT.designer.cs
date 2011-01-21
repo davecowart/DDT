@@ -2351,6 +2351,8 @@ namespace DDT.Models
 		
 		private int _Cooldown;
 		
+		private bool _Available;
+		
 		private EntityRef<Character> _Character;
 		
     #region Extensibility Method Definitions
@@ -2377,6 +2379,8 @@ namespace DDT.Models
     partial void OnRangeChanged();
     partial void OnCooldownChanging(int value);
     partial void OnCooldownChanged();
+    partial void OnAvailableChanging(bool value);
+    partial void OnAvailableChanged();
     #endregion
 		
 		public Power()
@@ -2585,6 +2589,26 @@ namespace DDT.Models
 					this._Cooldown = value;
 					this.SendPropertyChanged("Cooldown");
 					this.OnCooldownChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Available", DbType="Bit NOT NULL")]
+		public bool Available
+		{
+			get
+			{
+				return this._Available;
+			}
+			set
+			{
+				if ((this._Available != value))
+				{
+					this.OnAvailableChanging(value);
+					this.SendPropertyChanging();
+					this._Available = value;
+					this.SendPropertyChanged("Available");
+					this.OnAvailableChanged();
 				}
 			}
 		}

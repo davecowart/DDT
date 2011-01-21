@@ -54,6 +54,19 @@ namespace DDT.Controllers {
 			}
 		}
 
+		[HttpPost]
+		public ActionResult TogglePowerAvailability(int characterId, int powerId) {
+			try {
+				var power = _db.Powers.FirstOrDefault(p => p.Id == powerId);
+				if (power == null) return Json(new { available = false });
+				power.Available = !power.Available;
+				_db.SubmitChanges();
+				return Json(new { available = power.Available });
+			} catch {
+				return Json(new { available = false });
+			}
+		}
+
 		#endregion
 
 		#region Effects
