@@ -175,4 +175,7 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+	$(".unavailable").fadeTo(200, 0.4);
+
 });

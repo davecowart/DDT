@@ -35,6 +35,43 @@ namespace DDT.Controllers {
 			return View(charVM);
 		}
 
+		[HttpPost]
+		public ActionResult EndEncounter(int id) {
+			var character = _db.Characters.SingleOrDefault(c => c.Id == id);
+			if (character == null) return RedirectToRoute("CharacterNotFound");
+			_db.ACBonuses.DeleteAllOnSubmit(character.ACBonuses);
+			_db.FortBonuses.DeleteAllOnSubmit(character.FortBonuses);
+			_db.ReflexBonuses.DeleteAllOnSubmit(character.ReflexBonuses);
+			_db.WillBonuses.DeleteAllOnSubmit(character.WillBonuses);
+			_db.Effects.DeleteAllOnSubmit(character.Effects);
+			character.HPTemp = 0;
+
+			character.Powers.Where(p => p.CooldownEnum != Cooldowns.Daily).ToList().ForEach(p => p.Available = true);
+			_db.SubmitChanges();
+
+			return RedirectToAction("Details", new { id = id });
+		}
+
+		[HttpPost]
+		public ActionResult EndDay(int id) {
+			var character = _db.Characters.SingleOrDefault(c => c.Id == id);
+			if (character == null) return RedirectToRoute("CharacterNotFound");
+			_db.ACBonuses.DeleteAllOnSubmit(character.ACBonuses);
+			_db.FortBonuses.DeleteAllOnSubmit(character.FortBonuses);
+			_db.ReflexBonuses.DeleteAllOnSubmit(character.ReflexBonuses);
+			_db.WillBonuses.DeleteAllOnSubmit(character.WillBonuses);
+			_db.Effects.DeleteAllOnSubmit(character.Effects);
+			character.HPTemp = 0;
+			character.SurgesUsed = 0;
+			character.ActionPoints = 1;
+			character.HPCurrent = character.HPMax;
+
+			character.Powers.ToList().ForEach(p => p.Available = true);
+			_db.SubmitChanges();
+
+			return RedirectToAction("Details", new { id = id });
+		}
+
 		#region Powers
 
 		public ViewResult BlankPowerRow() {

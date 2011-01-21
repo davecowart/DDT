@@ -10,7 +10,7 @@
 		<h2><%: Model.Character.Name %></h2>
 
 		<div>
-			<div id="abilities" class="span-8">
+			<div id="abilities" class="span-4">
 				<table>
 					<thead>
 						<tr>
@@ -66,6 +66,14 @@
 					<p><%: Model.Character.Will %></p>
 										<% Html.RenderPartial("WillBonusList", Model.WillBonuses); %>
 				</div>
+			</div>
+			<div class="span-4 last">
+				<% using (Html.BeginForm("EndEncounter", "Character", new { id = Model.Character.Id })) { %>
+					<input type="submit" value="End Encounter" />
+				<% } %>
+				<% using (Html.BeginForm("EndDay", "Character", new { id = Model.Character.Id })) { %>
+					<input type="submit" value="End Day" />
+				<% } %>
 			</div>
 		</div>
 		<div>
