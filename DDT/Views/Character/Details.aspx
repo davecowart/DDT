@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Blueprint.Master" Inherits="System.Web.Mvc.ViewPage<DDT.Models.ViewModels.CharacterViewModel>" %>
 <%@ Import Namespace="DDT.Helpers" %>
 
+<asp:Content ID="Content4" ContentPlaceHolderID="ScriptContent" runat="server">
+	<script src="<%=this.ResolveUrl("~/Scripts/Character.js")%>" type="text/javascript"></script>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Details
 </asp:Content>
@@ -92,11 +96,11 @@
 				</div>
 				<div class="span-3">
 					<h4>Bloodied</h4>
-					<p><%: Model.Bloodied %></p>
+					<p><%: Model.Character.BloodiedValue() %></p>
 				</div>
 				<div class="span-3">
 					<h4>Surge Value</h4>
-					<p><%: Model.SurgeValue %></p>
+					<p><%: Model.Character.SurgeValue() %></p>
 				</div>
 				<div class="span-3">
 					<h4>Daily Surges</h4>

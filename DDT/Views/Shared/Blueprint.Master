@@ -15,8 +15,7 @@
 	<script src="<%=this.ResolveUrl("~/Scripts/jquery-1.4.1.min.js")%>" type="text/javascript"></script>
 	<script src="<%=this.ResolveUrl("~/Scripts/jquery.validate.min.js")%>" type="text/javascript"></script>
 	<script src="<%=this.ResolveUrl("~/Scripts/jquery.form.js")%>"type="text/javascript"></script>
-	<script src="<%=this.ResolveUrl("~/Scripts/Character.js")%>" type="text/javascript"></script>
-	
+	<asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
 </head>
 <body>
 	<div class="container">

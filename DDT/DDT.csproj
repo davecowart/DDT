@@ -67,10 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CharacterController.cs" />
+    <Compile Include="Controllers\EncounterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\FormulaHelper.cs" />
     <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
     <Compile Include="Models\Cooldowns.cs" />
@@ -118,10 +120,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\character.js" />
+    <Content Include="Scripts\encounter.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Views\Character\Create.aspx" />
     <Content Include="Views\Character\Details.aspx" />
     <Content Include="Views\Character\Index.aspx" />
+    <Content Include="Views\Encounter\Status.aspx" />
     <Content Include="Views\Shared\Bonus.ascx" />
     <Content Include="Views\Shared\BonusEditorRow.ascx" />
     <Content Include="Views\Shared\ACBonusList.ascx" />
@@ -190,7 +194,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>15819</DevelopmentServerPort>
+          <DevelopmentServerPort>38321</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -24,21 +24,5 @@ namespace DDT.Models.ViewModels {
 		public IEnumerable<Effect> Effects { get; set; }
 		public IEnumerable<Power> Powers { get; set; }
 
-		int? _bloodied;
-		public int Bloodied {
-			get {
-				if (!_bloodied.HasValue)
-					_bloodied = Convert.ToInt32(Math.Round(Character.HPMax / 2.0d));
-				return _bloodied.Value;
-			}
-		}
-		int? _surgeValue;
-		public int SurgeValue {
-			get {
-				if (!_surgeValue.HasValue)
-					_surgeValue = Convert.ToInt32(Math.Round(Character.HPMax / 4.0d));
-				return _surgeValue.Value;
-			}
-		}
 	}
 }

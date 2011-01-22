@@ -38,3 +38,8 @@ tr.Encounter {
 tr.Daily {
 	background-color:Silver;
 }
+
+span.bloodied {
+	background-color:Maroon;
+	color:White;
+}
