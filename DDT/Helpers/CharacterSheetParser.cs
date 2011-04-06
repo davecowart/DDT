@@ -6,9 +6,12 @@ using DDT.Models;
 using System.Xml.Linq;
 
 namespace DDT.Helpers {
-	public class CharacterSheetParser {
-		public Character Parse(XDocument saveFile) {
-			var chr = new Character();
+	public static class CharacterSheetParser {
+		public static Character Parse(XDocument saveFile) {
+			return Parse(saveFile, new Character());
+		}
+
+		public static Character Parse(XDocument saveFile, Character chr) {
 			var cs = saveFile.Root.Element("CharacterSheet");
 
 			//Character Details
@@ -17,16 +20,15 @@ namespace DDT.Helpers {
 			chr.Level = int.Parse(details.Element("Level").Value.Trim());
 
 			//Ability Scores
-			var abilities = cs.Element("AbilityScores");
-			chr.Strength = int.Parse(cs.Element("Strength").Attribute("score").Value);
-			chr.Constitution = int.Parse(cs.Element("Constitution").Attribute("score").Value);
-			chr.Dexterity = int.Parse(cs.Element("Dexterity").Attribute("score").Value);
-			chr.Intellect = int.Parse(cs.Element("Intellect").Attribute("score").Value);
-			chr.Wisdom = int.Parse(cs.Element("Wisdom").Attribute("score").Value);
-			chr.Charisma = int.Parse(cs.Element("Charisma").Attribute("score").Value);
+			var stats = cs.Element("StatBlock");
+			chr.Strength = stats.GetStatValue("Strength");
+			chr.Constitution = stats.GetStatValue("Constitution");
+			chr.Dexterity = stats.GetStatValue("Dexterity");
+			chr.Intellect = stats.GetStatValue("Intelligence");
+			chr.Wisdom = stats.GetStatValue("Wisdom");
+			chr.Charisma = stats.GetStatValue("Charisma");
 
 			//Defense Scores
-			var stats = cs.Element("statBlock");
 			chr.AC = stats.GetStatValue("AC");
 			chr.Fortitude = stats.GetStatValue("Fortitude");
 			chr.Reflex = stats.GetStatValue("Reflex");

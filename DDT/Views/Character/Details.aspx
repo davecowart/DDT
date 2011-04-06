@@ -2,6 +2,7 @@
 <%@ Import Namespace="DDT.Helpers" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptContent" runat="server">
+	<script src="<%=this.ResolveUrl("~/Scripts/fileuploader.js")%>" type="text/javascript"></script>
 	<script src="<%=this.ResolveUrl("~/Scripts/Character.js")%>" type="text/javascript"></script>
 </asp:Content>
 
@@ -12,7 +13,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 		<h2><%: Model.Character.Name %></h2>
-
+        <div id="drop">
+			<span>Drop character sheet here to upload</span>
+		</div>
 		<div>
 			<div id="abilities" class="span-4">
 				<table>
@@ -224,4 +227,7 @@
 			</div>
 		</div>
 		<%: Html.Hidden("characterId", Model.Character.Id) %>
+        <script type="text/javascript">
+            window.onload = createUploader;
+        </script>
 </asp:Content>
