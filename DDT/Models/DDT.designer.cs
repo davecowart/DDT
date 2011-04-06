@@ -2351,6 +2351,8 @@ namespace DDT.Models
 		
 		private int _Cooldown;
 		
+		private int _ActionType;
+		
 		private bool _Available;
 		
 		private EntityRef<Character> _Character;
@@ -2379,6 +2381,8 @@ namespace DDT.Models
     partial void OnRangeChanged();
     partial void OnCooldownChanging(int value);
     partial void OnCooldownChanged();
+    partial void OnActionTypeChanging(int value);
+    partial void OnActionTypeChanged();
     partial void OnAvailableChanging(bool value);
     partial void OnAvailableChanged();
     #endregion
@@ -2589,6 +2593,26 @@ namespace DDT.Models
 					this._Cooldown = value;
 					this.SendPropertyChanged("Cooldown");
 					this.OnCooldownChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="Int NOT NULL")]
+		public int ActionType
+		{
+			get
+			{
+				return this._ActionType;
+			}
+			set
+			{
+				if ((this._ActionType != value))
+				{
+					this.OnActionTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ActionType = value;
+					this.SendPropertyChanged("ActionType");
+					this.OnActionTypeChanged();
 				}
 			}
 		}
