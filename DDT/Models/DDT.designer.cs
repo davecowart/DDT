@@ -2637,7 +2637,7 @@ namespace DDT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Power", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Power", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
 		public Character Character
 		{
 			get

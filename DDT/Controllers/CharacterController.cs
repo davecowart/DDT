@@ -66,14 +66,7 @@ namespace DDT.Controllers {
 			}
 
 			var xmlBytes = xmlStream.ToArray();
-			var disallowedCharacters = new byte[] { 0x27, 0x28, 0x29 };
 			xmlStream.Dispose();
-
-			for (int i = 0; i < xmlBytes.Length; i++) {
-				if (disallowedCharacters.Contains(xmlBytes[i])) {
-					xmlBytes[i] = 0x5F;
-				}
-			}
 
 			var characterString = Encoding.UTF8.GetString(xmlBytes);
 			if (characterString.StartsWith(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble())))
@@ -86,7 +79,7 @@ namespace DDT.Controllers {
 
 			var character = _db.Characters.SingleOrDefault(c => c.Id == id);
 			if (character == null) return Json(new { error = "Character not found" });
-			var updatedCharacter = CharacterSheetParser.Parse(characterSheet, character);
+			CharacterSheetParser.Parse(characterSheet, character);
 			_db.SubmitChanges();
 
 			return Json(new { success = true });

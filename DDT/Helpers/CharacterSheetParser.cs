@@ -8,10 +8,12 @@ using System.Xml.Linq;
 namespace DDT.Helpers {
 	public static class CharacterSheetParser {
 		public static Character Parse(XDocument saveFile) {
-			return Parse(saveFile, new Character());
+			var character = new Character();
+			Parse(saveFile, character);
+			return character;
 		}
 
-		public static Character Parse(XDocument saveFile, Character chr) {
+		public static void Parse(XDocument saveFile, Character chr) {
 			var cs = saveFile.Root.Element("CharacterSheet");
 
 			//Character Details
@@ -60,18 +62,22 @@ namespace DDT.Helpers {
 
 			//Powers
 			var powers = cs.Element("PowerStats").Elements("Power").Select(p => ParsePower(p));
-			var existingPowers = powers.Where(p => chr.Powers.Any(cp => cp.Name == p.Name));
-			var newPowers = powers.Except(existingPowers);
-			foreach (var existingPower in existingPowers) {
-				var power = chr.Powers.Single(p => p.Name == existingPower.Name);
-				power.Cooldown = existingPower.Cooldown;
-				power.ActionType = existingPower.ActionType;
-				power.Attack = existingPower.Attack;
-				power.Damage = existingPower.Damage;
+			var existingPowers = chr.Powers.ToList();
+			var updatedPowers = powers.Where(p => existingPowers.Any(ep => ep.Name == p.Name));
+			var newPowers = powers.Where(p => !existingPowers.Any(ep => ep.Name == p.Name));
+			var removedPowers = existingPowers.Where(ep => !powers.Any(p => p.Name == ep.Name));
+
+
+			foreach (var updatedPower in updatedPowers) {
+				var power = chr.Powers.Single(p => p.Name == updatedPower.Name);
+				power.Cooldown = updatedPower.Cooldown;
+				power.ActionType = updatedPower.ActionType;
+				power.Attack = updatedPower.Attack;
+				power.Damage = updatedPower.Damage;
 			}
 			chr.Powers.AddRange(newPowers);
-			
-			return chr;
+			foreach (var removedPower in removedPowers)
+				chr.Powers.Remove(removedPower);
 		}
 
 		private static Power ParsePower(XElement powerElement) {

@@ -115,7 +115,7 @@
       <Column Name="Cooldown" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ActionType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Available" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>
