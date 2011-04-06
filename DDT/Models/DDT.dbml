@@ -107,11 +107,11 @@
       <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Attack" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Damage" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Damage" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="Effect" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Hit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Miss" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Range" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Range" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="Cooldown" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ActionType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Available" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />

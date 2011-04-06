@@ -2477,7 +2477,7 @@ namespace DDT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Damage", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Damage", DbType="NChar(10)")]
 		public string Damage
 		{
 			get
@@ -2557,7 +2557,7 @@ namespace DDT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Range", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Range", DbType="VarChar(20)")]
 		public string Range
 		{
 			get
