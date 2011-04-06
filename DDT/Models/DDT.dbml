@@ -106,8 +106,8 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Attack" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Damage" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Attack" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Damage" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Effect" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Hit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Miss" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
