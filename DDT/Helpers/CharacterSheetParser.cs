@@ -21,6 +21,10 @@ namespace DDT.Helpers {
 			chr.Name = details.Element("name").Value.Trim();
 			chr.Level = int.Parse(details.Element("Level").Value.Trim());
 
+			var levelRule = saveFile.Root.Element("Level").Element("RulesElement");
+			chr.Race = levelRule.Elements("RulesElement").First(re => re.Attribute("type").Value == "Race").Attribute("name").Value;
+			chr.Class = levelRule.Elements("RulesElement").First(re => re.Attribute("type").Value == "Class").Attribute("name").Value;
+
 			//Ability Scores
 			var stats = cs.Element("StatBlock");
 			chr.Strength = stats.GetStatValue("Strength");
@@ -66,8 +70,6 @@ namespace DDT.Helpers {
 			var updatedPowers = powers.Where(p => existingPowers.Any(ep => ep.Name == p.Name));
 			var newPowers = powers.Where(p => !existingPowers.Any(ep => ep.Name == p.Name));
 			var removedPowers = existingPowers.Where(ep => !powers.Any(p => p.Name == ep.Name));
-
-
 			foreach (var updatedPower in updatedPowers) {
 				var power = chr.Powers.Single(p => p.Name == updatedPower.Name);
 				power.Cooldown = updatedPower.Cooldown;
