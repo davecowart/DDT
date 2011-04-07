@@ -2404,77 +2404,9 @@ namespace DDT.Models
 				}
 			}
 		}
-<<<<<<< HEAD
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Powers")]
-	public partial class Power : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CharacterId;
-		
-		private string _Name;
-		
-		private string _Attack;
-		
-		private string _Damage;
-		
-		private string _Effect;
-		
-		private string _Hit;
-		
-		private string _Miss;
-		
-		private string _Range;
-		
-		private int _Cooldown;
-		
-		private int _ActionType;
-		
-		private bool _Available;
-		
-		private EntityRef<Character> _Character;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCharacterIdChanging(int value);
-    partial void OnCharacterIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnAttackChanging(string value);
-    partial void OnAttackChanged();
-    partial void OnDamageChanging(string value);
-    partial void OnDamageChanged();
-    partial void OnEffectChanging(string value);
-    partial void OnEffectChanged();
-    partial void OnHitChanging(string value);
-    partial void OnHitChanged();
-    partial void OnMissChanging(string value);
-    partial void OnMissChanged();
-    partial void OnRangeChanging(string value);
-    partial void OnRangeChanged();
-    partial void OnCooldownChanging(int value);
-    partial void OnCooldownChanged();
-    partial void OnActionTypeChanging(int value);
-    partial void OnActionTypeChanged();
-    partial void OnAvailableChanging(bool value);
-    partial void OnAvailableChanged();
-    #endregion
-		
-		public Power()
-=======
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RangedBasicAttack", DbType="Int NOT NULL")]
 		public int RangedBasicAttack
->>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -2553,13 +2485,8 @@ namespace DDT.Models
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Attack", DbType="VarChar(50)")]
-		public string Attack
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RangedBasicDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string RangedBasicDamage
->>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -2578,13 +2505,8 @@ namespace DDT.Models
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Damage", DbType="VarChar(50)")]
-		public string Damage
-=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnarmedMeleeDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string UnarmedMeleeDamage
->>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -2649,13 +2571,8 @@ namespace DDT.Models
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Range", DbType="VarChar(20)")]
-		public string Range
-=======
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_WillBonuse", Storage="_WillBonuses", ThisKey="Id", OtherKey="CharacterId")]
 		public EntitySet<WillBonuse> WillBonuses
->>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -2680,33 +2597,8 @@ namespace DDT.Models
 			}
 		}
 		
-<<<<<<< HEAD
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="Int NOT NULL")]
-		public int ActionType
-		{
-			get
-			{
-				return this._ActionType;
-			}
-			set
-			{
-				if ((this._ActionType != value))
-				{
-					this.OnActionTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ActionType = value;
-					this.SendPropertyChanged("ActionType");
-					this.OnActionTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Available", DbType="Bit NOT NULL")]
-		public bool Available
-=======
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_FortBonuses", ThisKey="Id", OtherKey="CharacterId")]
 		public EntitySet<FortBonuse> FortBonuses
->>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
