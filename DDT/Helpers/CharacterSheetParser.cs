@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using DDT.Models;
+using System.Text;
 using System.Xml.Linq;
+using DDT.Models;
 
 namespace DDT.Helpers {
 	public static class CharacterSheetParser {
 		public static Character Parse(XDocument saveFile) {
 			var character = new Character();
-			Parse(saveFile, character);
+			LoadCharacter(saveFile, character);
 			return character;
 		}
 
-		public static void Parse(XDocument saveFile, Character chr) {
+		public static void LoadCharacter(XDocument saveFile, Character chr) {
 			var cs = saveFile.Root.Element("CharacterSheet");
 
 			//Character Details
@@ -80,6 +79,26 @@ namespace DDT.Helpers {
 			chr.Powers.AddRange(newPowers);
 			foreach (var removedPower in removedPowers)
 				chr.Powers.Remove(removedPower);
+		}
+
+		public static string GetXMLString(byte[] bytes) {
+			var characterString = Encoding.UTF8.GetString(bytes);
+			if (characterString.StartsWith(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble())))
+				characterString = characterString.Remove(0, Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble()).Length);
+			characterString = RemoveComments(characterString);
+			var campaignStart = characterString.IndexOf("<D20CampaignSetting");
+			var campaignEnd = characterString.IndexOf("</D20CampaignSetting>") + "</D20CampaignSetting>".Length;
+			characterString = characterString.Remove(campaignStart, campaignEnd - campaignStart);
+			return characterString;
+		}
+
+		private static string RemoveComments(string characterString) {
+			while (characterString.Contains("<!--")) {
+				var start = characterString.IndexOf("<!--");
+				var length = characterString.IndexOf("-->") - start + 3;
+				characterString = characterString.Remove(start, length);
+			}
+			return characterString;
 		}
 
 		private static Power ParsePower(XElement powerElement) {
