@@ -1327,7 +1327,7 @@ namespace DDT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Power", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Power", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
 		public Character Character
 		{
 			get
@@ -1466,22 +1466,6 @@ namespace DDT.Models
 		
 		private int _Thievery;
 		
-		private int _MeleeBasicAttack;
-		
-		private int _RangedBasicAttack;
-		
-		private int _UnarmedMeleeAttack;
-		
-		private int _UnarmedRangedAttack;
-		
-		private string _MeleeBasicDamage;
-		
-		private string _RangedBasicDamage;
-		
-		private string _UnarmedMeleeDamage;
-		
-		private string _UnarmedRangedDamage;
-		
 		private EntitySet<ACBonuse> _ACBonuses;
 		
 		private EntitySet<ReflexBonuse> _ReflexBonuses;
@@ -1576,22 +1560,6 @@ namespace DDT.Models
     partial void OnStreetwiseChanged();
     partial void OnThieveryChanging(int value);
     partial void OnThieveryChanged();
-    partial void OnMeleeBasicAttackChanging(int value);
-    partial void OnMeleeBasicAttackChanged();
-    partial void OnRangedBasicAttackChanging(int value);
-    partial void OnRangedBasicAttackChanged();
-    partial void OnUnarmedMeleeAttackChanging(int value);
-    partial void OnUnarmedMeleeAttackChanged();
-    partial void OnUnarmedRangedAttackChanging(int value);
-    partial void OnUnarmedRangedAttackChanged();
-    partial void OnMeleeBasicDamageChanging(string value);
-    partial void OnMeleeBasicDamageChanged();
-    partial void OnRangedBasicDamageChanging(string value);
-    partial void OnRangedBasicDamageChanged();
-    partial void OnUnarmedMeleeDamageChanging(string value);
-    partial void OnUnarmedMeleeDamageChanged();
-    partial void OnUnarmedRangedDamageChanging(string value);
-    partial void OnUnarmedRangedDamageChanged();
     #endregion
 		
 		public Character()
@@ -2381,166 +2349,6 @@ namespace DDT.Models
 					this._Thievery = value;
 					this.SendPropertyChanged("Thievery");
 					this.OnThieveryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MeleeBasicAttack", DbType="Int NOT NULL")]
-		public int MeleeBasicAttack
-		{
-			get
-			{
-				return this._MeleeBasicAttack;
-			}
-			set
-			{
-				if ((this._MeleeBasicAttack != value))
-				{
-					this.OnMeleeBasicAttackChanging(value);
-					this.SendPropertyChanging();
-					this._MeleeBasicAttack = value;
-					this.SendPropertyChanged("MeleeBasicAttack");
-					this.OnMeleeBasicAttackChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RangedBasicAttack", DbType="Int NOT NULL")]
-		public int RangedBasicAttack
-		{
-			get
-			{
-				return this._RangedBasicAttack;
-			}
-			set
-			{
-				if ((this._RangedBasicAttack != value))
-				{
-					this.OnRangedBasicAttackChanging(value);
-					this.SendPropertyChanging();
-					this._RangedBasicAttack = value;
-					this.SendPropertyChanged("RangedBasicAttack");
-					this.OnRangedBasicAttackChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnarmedMeleeAttack", DbType="Int NOT NULL")]
-		public int UnarmedMeleeAttack
-		{
-			get
-			{
-				return this._UnarmedMeleeAttack;
-			}
-			set
-			{
-				if ((this._UnarmedMeleeAttack != value))
-				{
-					this.OnUnarmedMeleeAttackChanging(value);
-					this.SendPropertyChanging();
-					this._UnarmedMeleeAttack = value;
-					this.SendPropertyChanged("UnarmedMeleeAttack");
-					this.OnUnarmedMeleeAttackChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnarmedRangedAttack", DbType="Int NOT NULL")]
-		public int UnarmedRangedAttack
-		{
-			get
-			{
-				return this._UnarmedRangedAttack;
-			}
-			set
-			{
-				if ((this._UnarmedRangedAttack != value))
-				{
-					this.OnUnarmedRangedAttackChanging(value);
-					this.SendPropertyChanging();
-					this._UnarmedRangedAttack = value;
-					this.SendPropertyChanged("UnarmedRangedAttack");
-					this.OnUnarmedRangedAttackChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MeleeBasicDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string MeleeBasicDamage
-		{
-			get
-			{
-				return this._MeleeBasicDamage;
-			}
-			set
-			{
-				if ((this._MeleeBasicDamage != value))
-				{
-					this.OnMeleeBasicDamageChanging(value);
-					this.SendPropertyChanging();
-					this._MeleeBasicDamage = value;
-					this.SendPropertyChanged("MeleeBasicDamage");
-					this.OnMeleeBasicDamageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RangedBasicDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string RangedBasicDamage
-		{
-			get
-			{
-				return this._RangedBasicDamage;
-			}
-			set
-			{
-				if ((this._RangedBasicDamage != value))
-				{
-					this.OnRangedBasicDamageChanging(value);
-					this.SendPropertyChanging();
-					this._RangedBasicDamage = value;
-					this.SendPropertyChanged("RangedBasicDamage");
-					this.OnRangedBasicDamageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnarmedMeleeDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string UnarmedMeleeDamage
-		{
-			get
-			{
-				return this._UnarmedMeleeDamage;
-			}
-			set
-			{
-				if ((this._UnarmedMeleeDamage != value))
-				{
-					this.OnUnarmedMeleeDamageChanging(value);
-					this.SendPropertyChanging();
-					this._UnarmedMeleeDamage = value;
-					this.SendPropertyChanged("UnarmedMeleeDamage");
-					this.OnUnarmedMeleeDamageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnarmedRangedDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string UnarmedRangedDamage
-		{
-			get
-			{
-				return this._UnarmedRangedDamage;
-			}
-			set
-			{
-				if ((this._UnarmedRangedDamage != value))
-				{
-					this.OnUnarmedRangedDamageChanging(value);
-					this.SendPropertyChanging();
-					this._UnarmedRangedDamage = value;
-					this.SendPropertyChanged("UnarmedRangedDamage");
-					this.OnUnarmedRangedDamageChanged();
 				}
 			}
 		}

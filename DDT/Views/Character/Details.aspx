@@ -13,7 +13,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 		<h2><%: Model.Character.Name %></h2>
-        <div id="drop">
+    <div id="drop">
 			<span>Drop character sheet here to upload</span>
 		</div>
 		<div>
@@ -132,39 +132,6 @@
 								<%: Html.ActionLink("Add Effect", "BlankEffectRow", null, new { id = "addEffect" })%>
 								<% } %>
 				</div>
-				<div id="basicattacks">
-					<table>
-						<thead>
-							<tr>
-								<th></th>
-								<th>Attack</th>
-								<th>Damage</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Melee Basic</td>
-								<td><%: Model.Character.MeleeBasicAttack %></td>
-								<td><%: Model.Character.MeleeBasicDamage %></td>
-							</tr>
-							<tr>
-								<td>Ranged Basic</td>
-								<td><%: Model.Character.RangedBasicAttack %></td>
-								<td><%: Model.Character.RangedBasicDamage %></td>
-							</tr>
-							<tr>
-								<td>Unarmed Melee</td>
-								<td><%: Model.Character.UnarmedMeleeAttack %></td>
-								<td><%: Model.Character.UnarmedMeleeDamage %></td>
-							</tr>
-							<tr>
-								<td>Unarmed Ranged</td>
-								<td><%: Model.Character.UnarmedRangedAttack %></td>
-								<td><%: Model.Character.UnarmedRangedDamage %></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
 			</div>
 			<div id="skills" class="span-12 last">
 				<h3>Skills</h3>
@@ -227,7 +194,7 @@
 			</div>
 		</div>
 		<%: Html.Hidden("characterId", Model.Character.Id) %>
-        <script type="text/javascript">
-            window.onload = createUploader;
-        </script>
+    <script type="text/javascript">
+        window.onload = createUploader;
+    </script>
 </asp:Content>

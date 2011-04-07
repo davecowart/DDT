@@ -59,7 +59,7 @@
       <Column Name="Cooldown" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ActionType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Available" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Characters" Member="Characters">
@@ -103,14 +103,6 @@
       <Column Name="Stealth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Streetwise" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Thievery" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MeleeBasicAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RangedBasicAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UnarmedMeleeAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UnarmedRangedAttack" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MeleeBasicDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="RangedBasicDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="UnarmedMeleeDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="UnarmedRangedDamage" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="Character_ACBonuse" Member="ACBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ACBonuse" />
       <Association Name="Character_ReflexBonuse" Member="ReflexBonuses" ThisKey="Id" OtherKey="CharacterId" Type="ReflexBonuse" />
       <Association Name="Character_WillBonuse" Member="WillBonuses" ThisKey="Id" OtherKey="CharacterId" Type="WillBonuse" />
@@ -119,6 +111,4 @@
       <Association Name="Character_Power" Member="Powers" ThisKey="Id" OtherKey="CharacterId" Type="Power" />
     </Type>
   </Table>
-=======
->>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 </Database>

@@ -122,6 +122,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\character.js" />
+    <Content Include="Scripts\create.js" />
     <Content Include="Scripts\encounter.js" />
     <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery.form.js" />

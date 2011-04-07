@@ -24,6 +24,21 @@ namespace DDT.Controllers {
 		}
 
 		[HttpPost]
+		public ActionResult CreateFromUpload() {
+			try {
+				var xmlBytes = ReceiveUpload(Request);
+				var characterString = CharacterSheetParser.GetXMLString(xmlBytes);
+				var characterSheet = XDocument.Parse(characterString);
+				var character = CharacterSheetParser.Parse(characterSheet);
+				_db.Characters.InsertOnSubmit(character);
+				_db.SubmitChanges();
+				return Json(new { success = true });
+			} catch (Exception ex) {
+				return Json(new { error = ex.Message });
+			}
+		}
+
+		[HttpPost]
 		public ActionResult Create(Character character) {
 			_db.Characters.InsertOnSubmit(character);
 			_db.SubmitChanges();
