@@ -71,11 +71,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CharacterSheetParser.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\FormulaHelper.cs" />
     <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
-    <Compile Include="Models\Cooldowns.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\DDT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,6 +86,7 @@
     <Compile Include="Models\IBonus.cs" />
     <Compile Include="Models\ICooldownable.cs" />
     <Compile Include="Models\IExpirable.cs" />
+    <Compile Include="Models\Power.cs" />
     <Compile Include="Models\ViewModels\CharacterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -121,6 +123,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\character.js" />
     <Content Include="Scripts\encounter.js" />
+    <Content Include="Scripts\fileuploader.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Views\Character\Create.aspx" />
     <Content Include="Views\Character\Details.aspx" />
@@ -177,6 +180,7 @@
   <ItemGroup>
     <None Include="Models\DDT.dbml.layout">
       <DependentUpon>DDT.dbml</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

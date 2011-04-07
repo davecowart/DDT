@@ -4,6 +4,10 @@
 	Create
 </asp:Content>
 
+<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+	<script src="<%=this.ResolveUrl("~/Scripts/fileuploader.js")%>"type="text/javascript"></script>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 		<h2>Create</h2>

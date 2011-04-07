@@ -27,11 +27,47 @@
       <Association Name="Character_WillBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Effects" Member="Effects">
+    <Type Name="Effect">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_Effect" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FortBonuses" Member="FortBonuses">
+    <Type Name="FortBonuse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BonusAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Character_FortBonuse" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Powers" Member="Powers">
+    <Type Name="Power">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CharacterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Attack" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Damage" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Effect" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Hit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Miss" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Range" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cooldown" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActionType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Available" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Characters" Member="Characters">
     <Type Name="Character">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Race" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Class" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="HPMax" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="HPTemp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -83,6 +119,7 @@
       <Association Name="Character_Power" Member="Powers" ThisKey="Id" OtherKey="CharacterId" Type="Power" />
     </Type>
   </Table>
+<<<<<<< HEAD
   <Table Name="dbo.Effects" Member="Effects">
     <Type Name="Effect">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -118,4 +155,6 @@
       <Association Name="Character_Power" Member="Character" ThisKey="CharacterId" OtherKey="Id" Type="Character" IsForeignKey="true" />
     </Type>
   </Table>
+=======
+>>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 </Database>

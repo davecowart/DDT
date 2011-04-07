@@ -39,9 +39,6 @@ namespace DDT.Models
     partial void InsertWillBonuse(WillBonuse instance);
     partial void UpdateWillBonuse(WillBonuse instance);
     partial void DeleteWillBonuse(WillBonuse instance);
-    partial void InsertCharacter(Character instance);
-    partial void UpdateCharacter(Character instance);
-    partial void DeleteCharacter(Character instance);
     partial void InsertEffect(Effect instance);
     partial void UpdateEffect(Effect instance);
     partial void DeleteEffect(Effect instance);
@@ -51,6 +48,9 @@ namespace DDT.Models
     partial void InsertPower(Power instance);
     partial void UpdatePower(Power instance);
     partial void DeletePower(Power instance);
+    partial void InsertCharacter(Character instance);
+    partial void UpdateCharacter(Character instance);
+    partial void DeleteCharacter(Character instance);
     #endregion
 		
 		public DDTDataContext() : 
@@ -107,14 +107,6 @@ namespace DDT.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Character> Characters
-		{
-			get
-			{
-				return this.GetTable<Character>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Effect> Effects
 		{
 			get
@@ -136,6 +128,14 @@ namespace DDT.Models
 			get
 			{
 				return this.GetTable<Power>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Character> Characters
+		{
+			get
+			{
+				return this.GetTable<Character>();
 			}
 		}
 	}
@@ -665,6 +665,723 @@ namespace DDT.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Effects")]
+	public partial class Effect : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CharacterId;
+		
+		private string _Name;
+		
+		private int _ExpirationKey;
+		
+		private EntityRef<Character> _Character;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCharacterIdChanging(int value);
+    partial void OnCharacterIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnExpirationKeyChanging(int value);
+    partial void OnExpirationKeyChanged();
+    #endregion
+		
+		public Effect()
+		{
+			this._Character = default(EntityRef<Character>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
+		public int CharacterId
+		{
+			get
+			{
+				return this._CharacterId;
+			}
+			set
+			{
+				if ((this._CharacterId != value))
+				{
+					if (this._Character.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCharacterIdChanging(value);
+					this.SendPropertyChanging();
+					this._CharacterId = value;
+					this.SendPropertyChanged("CharacterId");
+					this.OnCharacterIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpirationKey", DbType="Int NOT NULL")]
+		public int ExpirationKey
+		{
+			get
+			{
+				return this._ExpirationKey;
+			}
+			set
+			{
+				if ((this._ExpirationKey != value))
+				{
+					this.OnExpirationKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ExpirationKey = value;
+					this.SendPropertyChanged("ExpirationKey");
+					this.OnExpirationKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Effect", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
+		public Character Character
+		{
+			get
+			{
+				return this._Character.Entity;
+			}
+			set
+			{
+				Character previousValue = this._Character.Entity;
+				if (((previousValue != value) 
+							|| (this._Character.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Character.Entity = null;
+						previousValue.Effects.Remove(this);
+					}
+					this._Character.Entity = value;
+					if ((value != null))
+					{
+						value.Effects.Add(this);
+						this._CharacterId = value.Id;
+					}
+					else
+					{
+						this._CharacterId = default(int);
+					}
+					this.SendPropertyChanged("Character");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FortBonuses")]
+	public partial class FortBonuse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CharacterId;
+		
+		private int _BonusAmount;
+		
+		private int _ExpirationKey;
+		
+		private EntityRef<Character> _Character;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCharacterIdChanging(int value);
+    partial void OnCharacterIdChanged();
+    partial void OnBonusAmountChanging(int value);
+    partial void OnBonusAmountChanged();
+    partial void OnExpirationKeyChanging(int value);
+    partial void OnExpirationKeyChanged();
+    #endregion
+		
+		public FortBonuse()
+		{
+			this._Character = default(EntityRef<Character>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
+		public int CharacterId
+		{
+			get
+			{
+				return this._CharacterId;
+			}
+			set
+			{
+				if ((this._CharacterId != value))
+				{
+					if (this._Character.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCharacterIdChanging(value);
+					this.SendPropertyChanging();
+					this._CharacterId = value;
+					this.SendPropertyChanged("CharacterId");
+					this.OnCharacterIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BonusAmount", DbType="Int NOT NULL")]
+		public int BonusAmount
+		{
+			get
+			{
+				return this._BonusAmount;
+			}
+			set
+			{
+				if ((this._BonusAmount != value))
+				{
+					this.OnBonusAmountChanging(value);
+					this.SendPropertyChanging();
+					this._BonusAmount = value;
+					this.SendPropertyChanged("BonusAmount");
+					this.OnBonusAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpirationKey", DbType="Int NOT NULL")]
+		public int ExpirationKey
+		{
+			get
+			{
+				return this._ExpirationKey;
+			}
+			set
+			{
+				if ((this._ExpirationKey != value))
+				{
+					this.OnExpirationKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ExpirationKey = value;
+					this.SendPropertyChanged("ExpirationKey");
+					this.OnExpirationKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
+		public Character Character
+		{
+			get
+			{
+				return this._Character.Entity;
+			}
+			set
+			{
+				Character previousValue = this._Character.Entity;
+				if (((previousValue != value) 
+							|| (this._Character.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Character.Entity = null;
+						previousValue.FortBonuses.Remove(this);
+					}
+					this._Character.Entity = value;
+					if ((value != null))
+					{
+						value.FortBonuses.Add(this);
+						this._CharacterId = value.Id;
+					}
+					else
+					{
+						this._CharacterId = default(int);
+					}
+					this.SendPropertyChanged("Character");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Powers")]
+	public partial class Power : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CharacterId;
+		
+		private string _Name;
+		
+		private string _Attack;
+		
+		private string _Damage;
+		
+		private string _Effect;
+		
+		private string _Hit;
+		
+		private string _Miss;
+		
+		private string _Range;
+		
+		private int _Cooldown;
+		
+		private int _ActionType;
+		
+		private bool _Available;
+		
+		private EntityRef<Character> _Character;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCharacterIdChanging(int value);
+    partial void OnCharacterIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnAttackChanging(string value);
+    partial void OnAttackChanged();
+    partial void OnDamageChanging(string value);
+    partial void OnDamageChanged();
+    partial void OnEffectChanging(string value);
+    partial void OnEffectChanged();
+    partial void OnHitChanging(string value);
+    partial void OnHitChanged();
+    partial void OnMissChanging(string value);
+    partial void OnMissChanged();
+    partial void OnRangeChanging(string value);
+    partial void OnRangeChanged();
+    partial void OnCooldownChanging(int value);
+    partial void OnCooldownChanged();
+    partial void OnActionTypeChanging(int value);
+    partial void OnActionTypeChanged();
+    partial void OnAvailableChanging(bool value);
+    partial void OnAvailableChanged();
+    #endregion
+		
+		public Power()
+		{
+			this._Character = default(EntityRef<Character>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
+		public int CharacterId
+		{
+			get
+			{
+				return this._CharacterId;
+			}
+			set
+			{
+				if ((this._CharacterId != value))
+				{
+					if (this._Character.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCharacterIdChanging(value);
+					this.SendPropertyChanging();
+					this._CharacterId = value;
+					this.SendPropertyChanged("CharacterId");
+					this.OnCharacterIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Attack", DbType="VarChar(50)")]
+		public string Attack
+		{
+			get
+			{
+				return this._Attack;
+			}
+			set
+			{
+				if ((this._Attack != value))
+				{
+					this.OnAttackChanging(value);
+					this.SendPropertyChanging();
+					this._Attack = value;
+					this.SendPropertyChanged("Attack");
+					this.OnAttackChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Damage", DbType="VarChar(50)")]
+		public string Damage
+		{
+			get
+			{
+				return this._Damage;
+			}
+			set
+			{
+				if ((this._Damage != value))
+				{
+					this.OnDamageChanging(value);
+					this.SendPropertyChanging();
+					this._Damage = value;
+					this.SendPropertyChanged("Damage");
+					this.OnDamageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Effect", DbType="VarChar(50)")]
+		public string Effect
+		{
+			get
+			{
+				return this._Effect;
+			}
+			set
+			{
+				if ((this._Effect != value))
+				{
+					this.OnEffectChanging(value);
+					this.SendPropertyChanging();
+					this._Effect = value;
+					this.SendPropertyChanged("Effect");
+					this.OnEffectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit", DbType="VarChar(50)")]
+		public string Hit
+		{
+			get
+			{
+				return this._Hit;
+			}
+			set
+			{
+				if ((this._Hit != value))
+				{
+					this.OnHitChanging(value);
+					this.SendPropertyChanging();
+					this._Hit = value;
+					this.SendPropertyChanged("Hit");
+					this.OnHitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Miss", DbType="VarChar(50)")]
+		public string Miss
+		{
+			get
+			{
+				return this._Miss;
+			}
+			set
+			{
+				if ((this._Miss != value))
+				{
+					this.OnMissChanging(value);
+					this.SendPropertyChanging();
+					this._Miss = value;
+					this.SendPropertyChanged("Miss");
+					this.OnMissChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Range", DbType="VarChar(20)")]
+		public string Range
+		{
+			get
+			{
+				return this._Range;
+			}
+			set
+			{
+				if ((this._Range != value))
+				{
+					this.OnRangeChanging(value);
+					this.SendPropertyChanging();
+					this._Range = value;
+					this.SendPropertyChanged("Range");
+					this.OnRangeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cooldown", DbType="Int NOT NULL")]
+		public int Cooldown
+		{
+			get
+			{
+				return this._Cooldown;
+			}
+			set
+			{
+				if ((this._Cooldown != value))
+				{
+					this.OnCooldownChanging(value);
+					this.SendPropertyChanging();
+					this._Cooldown = value;
+					this.SendPropertyChanged("Cooldown");
+					this.OnCooldownChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="Int NOT NULL")]
+		public int ActionType
+		{
+			get
+			{
+				return this._ActionType;
+			}
+			set
+			{
+				if ((this._ActionType != value))
+				{
+					this.OnActionTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ActionType = value;
+					this.SendPropertyChanged("ActionType");
+					this.OnActionTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Available", DbType="Bit NOT NULL")]
+		public bool Available
+		{
+			get
+			{
+				return this._Available;
+			}
+			set
+			{
+				if ((this._Available != value))
+				{
+					this.OnAvailableChanging(value);
+					this.SendPropertyChanging();
+					this._Available = value;
+					this.SendPropertyChanged("Available");
+					this.OnAvailableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Power", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Character Character
+		{
+			get
+			{
+				return this._Character.Entity;
+			}
+			set
+			{
+				Character previousValue = this._Character.Entity;
+				if (((previousValue != value) 
+							|| (this._Character.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Character.Entity = null;
+						previousValue.Powers.Remove(this);
+					}
+					this._Character.Entity = value;
+					if ((value != null))
+					{
+						value.Powers.Add(this);
+						this._CharacterId = value.Id;
+					}
+					else
+					{
+						this._CharacterId = default(int);
+					}
+					this.SendPropertyChanged("Character");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Characters")]
 	public partial class Character : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -676,6 +1393,8 @@ namespace DDT.Models
 		private string _Name;
 		
 		private string _Race;
+		
+		private string _Class;
 		
 		private int _Level;
 		
@@ -785,6 +1504,8 @@ namespace DDT.Models
     partial void OnNameChanged();
     partial void OnRaceChanging(string value);
     partial void OnRaceChanged();
+    partial void OnClassChanging(string value);
+    partial void OnClassChanged();
     partial void OnLevelChanging(int value);
     partial void OnLevelChanged();
     partial void OnHPMaxChanging(int value);
@@ -940,6 +1661,26 @@ namespace DDT.Models
 					this._Race = value;
 					this.SendPropertyChanged("Race");
 					this.OnRaceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Class", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Class
+		{
+			get
+			{
+				return this._Class;
+			}
+			set
+			{
+				if ((this._Class != value))
+				{
+					this.OnClassChanging(value);
+					this.SendPropertyChanging();
+					this._Class = value;
+					this.SendPropertyChanged("Class");
+					this.OnClassChanged();
 				}
 			}
 		}
@@ -1663,9 +2404,77 @@ namespace DDT.Models
 				}
 			}
 		}
+<<<<<<< HEAD
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Powers")]
+	public partial class Power : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CharacterId;
+		
+		private string _Name;
+		
+		private string _Attack;
+		
+		private string _Damage;
+		
+		private string _Effect;
+		
+		private string _Hit;
+		
+		private string _Miss;
+		
+		private string _Range;
+		
+		private int _Cooldown;
+		
+		private int _ActionType;
+		
+		private bool _Available;
+		
+		private EntityRef<Character> _Character;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCharacterIdChanging(int value);
+    partial void OnCharacterIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnAttackChanging(string value);
+    partial void OnAttackChanged();
+    partial void OnDamageChanging(string value);
+    partial void OnDamageChanged();
+    partial void OnEffectChanging(string value);
+    partial void OnEffectChanged();
+    partial void OnHitChanging(string value);
+    partial void OnHitChanged();
+    partial void OnMissChanging(string value);
+    partial void OnMissChanged();
+    partial void OnRangeChanging(string value);
+    partial void OnRangeChanged();
+    partial void OnCooldownChanging(int value);
+    partial void OnCooldownChanged();
+    partial void OnActionTypeChanging(int value);
+    partial void OnActionTypeChanged();
+    partial void OnAvailableChanging(bool value);
+    partial void OnAvailableChanged();
+    #endregion
+		
+		public Power()
+=======
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RangedBasicAttack", DbType="Int NOT NULL")]
 		public int RangedBasicAttack
+>>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -1744,8 +2553,13 @@ namespace DDT.Models
 			}
 		}
 		
+<<<<<<< HEAD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Attack", DbType="VarChar(50)")]
+		public string Attack
+=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RangedBasicDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string RangedBasicDamage
+>>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -1764,8 +2578,13 @@ namespace DDT.Models
 			}
 		}
 		
+<<<<<<< HEAD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Damage", DbType="VarChar(50)")]
+		public string Damage
+=======
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnarmedMeleeDamage", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string UnarmedMeleeDamage
+>>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -1830,8 +2649,13 @@ namespace DDT.Models
 			}
 		}
 		
+<<<<<<< HEAD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Range", DbType="VarChar(20)")]
+		public string Range
+=======
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_WillBonuse", Storage="_WillBonuses", ThisKey="Id", OtherKey="CharacterId")]
 		public EntitySet<WillBonuse> WillBonuses
+>>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -1856,8 +2680,33 @@ namespace DDT.Models
 			}
 		}
 		
+<<<<<<< HEAD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="Int NOT NULL")]
+		public int ActionType
+		{
+			get
+			{
+				return this._ActionType;
+			}
+			set
+			{
+				if ((this._ActionType != value))
+				{
+					this.OnActionTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ActionType = value;
+					this.SendPropertyChanged("ActionType");
+					this.OnActionTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Available", DbType="Bit NOT NULL")]
+		public bool Available
+=======
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_FortBonuses", ThisKey="Id", OtherKey="CharacterId")]
 		public EntitySet<FortBonuse> FortBonuses
+>>>>>>> 6718ebf5be1800fa4fa9a0bb371740c65dd322d2
 		{
 			get
 			{
@@ -1972,723 +2821,6 @@ namespace DDT.Models
 		{
 			this.SendPropertyChanging();
 			entity.Character = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Effects")]
-	public partial class Effect : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CharacterId;
-		
-		private string _Name;
-		
-		private int _ExpirationKey;
-		
-		private EntityRef<Character> _Character;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCharacterIdChanging(int value);
-    partial void OnCharacterIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnExpirationKeyChanging(int value);
-    partial void OnExpirationKeyChanged();
-    #endregion
-		
-		public Effect()
-		{
-			this._Character = default(EntityRef<Character>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
-		public int CharacterId
-		{
-			get
-			{
-				return this._CharacterId;
-			}
-			set
-			{
-				if ((this._CharacterId != value))
-				{
-					if (this._Character.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCharacterIdChanging(value);
-					this.SendPropertyChanging();
-					this._CharacterId = value;
-					this.SendPropertyChanged("CharacterId");
-					this.OnCharacterIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpirationKey", DbType="Int NOT NULL")]
-		public int ExpirationKey
-		{
-			get
-			{
-				return this._ExpirationKey;
-			}
-			set
-			{
-				if ((this._ExpirationKey != value))
-				{
-					this.OnExpirationKeyChanging(value);
-					this.SendPropertyChanging();
-					this._ExpirationKey = value;
-					this.SendPropertyChanged("ExpirationKey");
-					this.OnExpirationKeyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Effect", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
-		public Character Character
-		{
-			get
-			{
-				return this._Character.Entity;
-			}
-			set
-			{
-				Character previousValue = this._Character.Entity;
-				if (((previousValue != value) 
-							|| (this._Character.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Character.Entity = null;
-						previousValue.Effects.Remove(this);
-					}
-					this._Character.Entity = value;
-					if ((value != null))
-					{
-						value.Effects.Add(this);
-						this._CharacterId = value.Id;
-					}
-					else
-					{
-						this._CharacterId = default(int);
-					}
-					this.SendPropertyChanged("Character");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FortBonuses")]
-	public partial class FortBonuse : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CharacterId;
-		
-		private int _BonusAmount;
-		
-		private int _ExpirationKey;
-		
-		private EntityRef<Character> _Character;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCharacterIdChanging(int value);
-    partial void OnCharacterIdChanged();
-    partial void OnBonusAmountChanging(int value);
-    partial void OnBonusAmountChanged();
-    partial void OnExpirationKeyChanging(int value);
-    partial void OnExpirationKeyChanged();
-    #endregion
-		
-		public FortBonuse()
-		{
-			this._Character = default(EntityRef<Character>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
-		public int CharacterId
-		{
-			get
-			{
-				return this._CharacterId;
-			}
-			set
-			{
-				if ((this._CharacterId != value))
-				{
-					if (this._Character.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCharacterIdChanging(value);
-					this.SendPropertyChanging();
-					this._CharacterId = value;
-					this.SendPropertyChanged("CharacterId");
-					this.OnCharacterIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BonusAmount", DbType="Int NOT NULL")]
-		public int BonusAmount
-		{
-			get
-			{
-				return this._BonusAmount;
-			}
-			set
-			{
-				if ((this._BonusAmount != value))
-				{
-					this.OnBonusAmountChanging(value);
-					this.SendPropertyChanging();
-					this._BonusAmount = value;
-					this.SendPropertyChanged("BonusAmount");
-					this.OnBonusAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpirationKey", DbType="Int NOT NULL")]
-		public int ExpirationKey
-		{
-			get
-			{
-				return this._ExpirationKey;
-			}
-			set
-			{
-				if ((this._ExpirationKey != value))
-				{
-					this.OnExpirationKeyChanging(value);
-					this.SendPropertyChanging();
-					this._ExpirationKey = value;
-					this.SendPropertyChanged("ExpirationKey");
-					this.OnExpirationKeyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_FortBonuse", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
-		public Character Character
-		{
-			get
-			{
-				return this._Character.Entity;
-			}
-			set
-			{
-				Character previousValue = this._Character.Entity;
-				if (((previousValue != value) 
-							|| (this._Character.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Character.Entity = null;
-						previousValue.FortBonuses.Remove(this);
-					}
-					this._Character.Entity = value;
-					if ((value != null))
-					{
-						value.FortBonuses.Add(this);
-						this._CharacterId = value.Id;
-					}
-					else
-					{
-						this._CharacterId = default(int);
-					}
-					this.SendPropertyChanged("Character");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Powers")]
-	public partial class Power : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CharacterId;
-		
-		private string _Name;
-		
-		private string _Attack;
-		
-		private string _Damage;
-		
-		private string _Effect;
-		
-		private string _Hit;
-		
-		private string _Miss;
-		
-		private string _Range;
-		
-		private int _Cooldown;
-		
-		private int _ActionType;
-		
-		private bool _Available;
-		
-		private EntityRef<Character> _Character;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCharacterIdChanging(int value);
-    partial void OnCharacterIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnAttackChanging(string value);
-    partial void OnAttackChanged();
-    partial void OnDamageChanging(string value);
-    partial void OnDamageChanged();
-    partial void OnEffectChanging(string value);
-    partial void OnEffectChanged();
-    partial void OnHitChanging(string value);
-    partial void OnHitChanged();
-    partial void OnMissChanging(string value);
-    partial void OnMissChanged();
-    partial void OnRangeChanging(string value);
-    partial void OnRangeChanged();
-    partial void OnCooldownChanging(int value);
-    partial void OnCooldownChanged();
-    partial void OnActionTypeChanging(int value);
-    partial void OnActionTypeChanged();
-    partial void OnAvailableChanging(bool value);
-    partial void OnAvailableChanged();
-    #endregion
-		
-		public Power()
-		{
-			this._Character = default(EntityRef<Character>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterId", DbType="Int NOT NULL")]
-		public int CharacterId
-		{
-			get
-			{
-				return this._CharacterId;
-			}
-			set
-			{
-				if ((this._CharacterId != value))
-				{
-					if (this._Character.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCharacterIdChanging(value);
-					this.SendPropertyChanging();
-					this._CharacterId = value;
-					this.SendPropertyChanged("CharacterId");
-					this.OnCharacterIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Attack", DbType="VarChar(50)")]
-		public string Attack
-		{
-			get
-			{
-				return this._Attack;
-			}
-			set
-			{
-				if ((this._Attack != value))
-				{
-					this.OnAttackChanging(value);
-					this.SendPropertyChanging();
-					this._Attack = value;
-					this.SendPropertyChanged("Attack");
-					this.OnAttackChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Damage", DbType="VarChar(50)")]
-		public string Damage
-		{
-			get
-			{
-				return this._Damage;
-			}
-			set
-			{
-				if ((this._Damage != value))
-				{
-					this.OnDamageChanging(value);
-					this.SendPropertyChanging();
-					this._Damage = value;
-					this.SendPropertyChanged("Damage");
-					this.OnDamageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Effect", DbType="VarChar(50)")]
-		public string Effect
-		{
-			get
-			{
-				return this._Effect;
-			}
-			set
-			{
-				if ((this._Effect != value))
-				{
-					this.OnEffectChanging(value);
-					this.SendPropertyChanging();
-					this._Effect = value;
-					this.SendPropertyChanged("Effect");
-					this.OnEffectChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hit", DbType="VarChar(50)")]
-		public string Hit
-		{
-			get
-			{
-				return this._Hit;
-			}
-			set
-			{
-				if ((this._Hit != value))
-				{
-					this.OnHitChanging(value);
-					this.SendPropertyChanging();
-					this._Hit = value;
-					this.SendPropertyChanged("Hit");
-					this.OnHitChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Miss", DbType="VarChar(50)")]
-		public string Miss
-		{
-			get
-			{
-				return this._Miss;
-			}
-			set
-			{
-				if ((this._Miss != value))
-				{
-					this.OnMissChanging(value);
-					this.SendPropertyChanging();
-					this._Miss = value;
-					this.SendPropertyChanged("Miss");
-					this.OnMissChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Range", DbType="VarChar(20)")]
-		public string Range
-		{
-			get
-			{
-				return this._Range;
-			}
-			set
-			{
-				if ((this._Range != value))
-				{
-					this.OnRangeChanging(value);
-					this.SendPropertyChanging();
-					this._Range = value;
-					this.SendPropertyChanged("Range");
-					this.OnRangeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cooldown", DbType="Int NOT NULL")]
-		public int Cooldown
-		{
-			get
-			{
-				return this._Cooldown;
-			}
-			set
-			{
-				if ((this._Cooldown != value))
-				{
-					this.OnCooldownChanging(value);
-					this.SendPropertyChanging();
-					this._Cooldown = value;
-					this.SendPropertyChanged("Cooldown");
-					this.OnCooldownChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="Int NOT NULL")]
-		public int ActionType
-		{
-			get
-			{
-				return this._ActionType;
-			}
-			set
-			{
-				if ((this._ActionType != value))
-				{
-					this.OnActionTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ActionType = value;
-					this.SendPropertyChanged("ActionType");
-					this.OnActionTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Available", DbType="Bit NOT NULL")]
-		public bool Available
-		{
-			get
-			{
-				return this._Available;
-			}
-			set
-			{
-				if ((this._Available != value))
-				{
-					this.OnAvailableChanging(value);
-					this.SendPropertyChanging();
-					this._Available = value;
-					this.SendPropertyChanged("Available");
-					this.OnAvailableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Character_Power", Storage="_Character", ThisKey="CharacterId", OtherKey="Id", IsForeignKey=true)]
-		public Character Character
-		{
-			get
-			{
-				return this._Character.Entity;
-			}
-			set
-			{
-				Character previousValue = this._Character.Entity;
-				if (((previousValue != value) 
-							|| (this._Character.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Character.Entity = null;
-						previousValue.Powers.Remove(this);
-					}
-					this._Character.Entity = value;
-					if ((value != null))
-					{
-						value.Powers.Add(this);
-						this._CharacterId = value.Id;
-					}
-					else
-					{
-						this._CharacterId = default(int);
-					}
-					this.SendPropertyChanged("Character");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

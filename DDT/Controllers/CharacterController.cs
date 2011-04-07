@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using DDT.Models;
 using DDT.Models.ViewModels;
+using System.Xml.Linq;
+using System.IO;
+using DDT.Helpers;
+using System.Text;
 
 namespace DDT.Controllers {
 	public class CharacterController : Controller {
@@ -27,10 +31,72 @@ namespace DDT.Controllers {
 			return RedirectToAction("Details", new { id = character.Id });
 		}
 
+		[HttpPost]
+		public JsonResult Upload(int id) {
+			var querystring = Request.QueryString["qqfile"];
+			var dotIndex = querystring.LastIndexOf('.');
+			var uploadFilename = querystring.Substring(0, dotIndex);
+			var uploadExtension = querystring.Substring(dotIndex);
+			bool isCharacterFile = uploadExtension == ".dnd4e";
+
+			const int length = 4096;
+			int bytesRead = 0;
+			var buffer = new Byte[length];
+			MemoryStream xmlStream = new MemoryStream();
+
+			try {
+				//this works in Chrome/FF/Safari
+				try {
+					do {
+						bytesRead = Request.InputStream.Read(buffer, 0, length);
+						xmlStream.Write(buffer, 0, bytesRead);
+					} while (bytesRead > 0);
+				} catch (Exception ex) {
+					return Json(new { error = ex.Message });
+				}
+			} catch {
+				try {
+					do {
+						bytesRead = Request.Files[0].InputStream.Read(buffer, 0, length);
+						xmlStream.Write(buffer, 0, bytesRead);
+					} while (bytesRead > 0);
+				} catch (Exception ex) {
+					return Json(new { error = ex.Message });
+				}
+			}
+
+			var xmlBytes = xmlStream.ToArray();
+			xmlStream.Dispose();
+
+			var characterString = Encoding.UTF8.GetString(xmlBytes);
+			if (characterString.StartsWith(Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble())))
+				characterString = characterString.Remove(0, Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble()).Length);
+			characterString = RemoveComments(characterString);
+			var campaignStart = characterString.IndexOf("<D20CampaignSetting");
+			var campaignEnd = characterString.IndexOf("</D20CampaignSetting>") + "</D20CampaignSetting>".Length;
+			characterString = characterString.Remove(campaignStart, campaignEnd - campaignStart);
+			var characterSheet = XDocument.Parse(characterString);
+
+			var character = _db.Characters.SingleOrDefault(c => c.Id == id);
+			if (character == null) return Json(new { error = "Character not found" });
+			CharacterSheetParser.Parse(characterSheet, character);
+			_db.SubmitChanges();
+
+			return Json(new { success = true });
+		}
+
+		private string RemoveComments(string characterString) {
+			while (characterString.Contains("<!--")) {
+				var start = characterString.IndexOf("<!--");
+				var length = characterString.IndexOf("-->") - start + 3;
+				characterString = characterString.Remove(start, length);
+			}
+			return characterString;
+		}
+
 		public ActionResult Details(int id) {
 			var character = _db.Characters.SingleOrDefault(c => c.Id == id);
-			if (character == null)
-				return RedirectToRoute("CharacterNotFound");
+			if (character == null) return RedirectToRoute("CharacterNotFound");
 			var charVM = new CharacterViewModel(character);
 			return View(charVM);
 		}
